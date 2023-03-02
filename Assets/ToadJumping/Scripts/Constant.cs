@@ -8,7 +8,7 @@ namespace Assets.ToadJumping.Scripts
     {
         public static readonly List<Vector2> LIST_POSITION_ENEMY = new() {
             new Vector2() { x = -2, y = 8 },
-            new Vector2() { x = 2, y = 8 },
+            new Vector2() { x = 0, y = 8 },
             new Vector2() { x = 2, y = 8 }
         };
 
