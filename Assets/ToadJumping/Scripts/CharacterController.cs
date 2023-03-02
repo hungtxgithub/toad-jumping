@@ -5,9 +5,9 @@ using UnityEngine;
 public class CharacterController : MonoBehaviour
 {
     private Rigidbody2D rbd2d;
-    private float moveInput;
-    private float speed = 2f;
-    private float jumpSpeed = 5f;
+    public float moveInput;
+    public float speed = 2f;
+    public float jumpSpeed = 5f;
 
     public Transform groundCheck;
     public float groundCheckRadius;
@@ -21,7 +21,7 @@ public class CharacterController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         // gameObject.transform.position.y 
         moveInput = Input.GetAxis("Horizontal");
@@ -31,8 +31,8 @@ public class CharacterController : MonoBehaviour
         groundIsTouching = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         // if (groundIsTouching)
         // {
-        //     moveInput = Input.GetAxis("Vertical");
-        //     rbd2d.velocity = new Vector2(rbd2d.velocity.x, moveInput * jumpSpeed);
+            // moveInput = Input.GetAxis("Vertical");
+            // rbd2d.velocity = new Vector2(rbd2d.velocity.x,  jumpSpeed*moveInput);
 
         // }
 
