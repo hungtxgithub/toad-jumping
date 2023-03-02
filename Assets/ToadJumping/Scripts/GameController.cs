@@ -1,13 +1,22 @@
+using Assets.ToadJumping.Scripts;
+using Assets.ToadJumping.ViewModel;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    public GameObject beeEnemy;
     public GameObject batEnemy;
+    public GameObject beeEnemy;
     public GameObject ghostEnemy;
     public GameObject skullEnemy;
+    public GameObject warning;
+
+    public GameObject title;
+    public GameObject character;
+    public GameObject platform;
+    public GameObject goBtnWrap;
+
 
     // Start is called before the first frame update
     void Start()
@@ -26,44 +35,64 @@ public class GameController : MonoBehaviour
     /// </summary>
     public void GoBtnClick()
     {
-        SpawnObjectAfterSeconds(RandomSpawnEnemy(beeEnemy, 40, batEnemy, 30, ghostEnemy, 20, skullEnemy, 10), 10);
+        title.SetActive(false);
+        character.SetActive(false);
+        platform.SetActive(false);
+        goBtnWrap.SetActive(false);
+
+        List<GameObjectRateVM> listGameObjecRate = new() {
+            new GameObjectRateVM(){GameObject = batEnemy, Rate = 4},
+            new GameObjectRateVM(){GameObject = beeEnemy, Rate = 3},
+            new GameObjectRateVM(){GameObject = ghostEnemy, Rate = 2},
+            new GameObjectRateVM(){GameObject = skullEnemy, Rate = 1},
+        };
+        StartCoroutine(SpawnObjectAfterSeconds(listGameObjecRate, 10, 15));
     }
 
+   
     /// <summary>
-    /// Random spawn enemy
+    /// Spawn object After n Seconds
     /// </summary>
-    /// <param name="obj1"></param>
-    /// <param name="rateObj1"></param>
-    /// <param name="obj2"></param>
-    /// <param name="rateObj2"></param>
-    /// <param name="obj3"></param>
-    /// <param name="rateObj3"></param>
-    /// <param name="obj4"></param>
-    /// <param name="rateObj4"></param>
+    /// <param name="seconds"></param>
     /// <returns></returns>
-    public GameObject RandomSpawnEnemy(GameObject obj1, int rateObj1, GameObject obj2, int rateObj2, GameObject obj3, int rateObj3, GameObject obj4, int rateObj4)
+    private IEnumerator SpawnObjectAfterSeconds(List<GameObjectRateVM> listObjectRate, int secondsRandomFrom, int secondsRandomTo)
     {
-        var listGameObject = new List<GameObject>();
-        for (int i = 0; i < rateObj1; i++)
-        {
-            listGameObject.Add(obj1);
-        }
-        for (int i = 0; i < rateObj2; i++)
-        {
-            listGameObject.Add(obj2);
-        }
-        for (int i = 0; i < rateObj3; i++)
-        {
-            listGameObject.Add(obj3);
-        }
-        for (int i = 0; i < rateObj4; i++)
-        {
-            listGameObject.Add(obj4);
-        }
 
-        int index = Random.Range(0, listGameObject.Count);
+        while (true)
+        {
+            List<GameObject> listGameObject = new();
 
-        return listGameObject[index];
+            foreach (var item1 in listObjectRate)
+            {
+                for (int i = 0; i < item1.Rate; i++)
+                {
+                    listGameObject.Add(item1.GameObject);
+                }
+            }
+
+            int index = Random.Range(0, listGameObject.Count);
+
+            GameObject obj = listGameObject[index];
+
+            Vector2 positionOfEnemy = GetPositionRandomOfEnemy();
+            Vector2 positionOfWarning = new() { x = positionOfEnemy.x, y = Constant.PositionYWarning};
+            SpawnObject(obj, positionOfEnemy);
+            SpawnObject(warning, positionOfWarning);
+            var timeRandom = Random.Range(secondsRandomFrom, secondsRandomTo + 1);
+            yield return new WaitForSeconds(timeRandom);
+        }
+    }
+
+
+    /// <summary>
+    /// Get position random of enemy
+    /// </summary>
+    /// <returns></returns>
+    private Vector2 GetPositionRandomOfEnemy()
+    {
+        List<Vector2> listVector2 = Constant.LIST_POSITION_ENEMY;
+        int index = Random.Range(0, 3);
+        return listVector2[index];
     }
 
 
@@ -78,37 +107,4 @@ public class GameController : MonoBehaviour
         Instantiate(obj, vector2, Quaternion.identity);
     }
 
-
-    /// <summary>
-    /// Spawn object After n Seconds
-    /// </summary>
-    /// <param name="seconds"></param>
-    /// <returns></returns>
-    private IEnumerator SpawnObjectAfterSeconds(GameObject obj, float seconds)
-    {
-        while (true)
-        {
-            Vector2 positionOfEnemy = GetPositionRandomOfEnemy(obj, 10);
-            SpawnObject(obj, positionOfEnemy);
-            yield return new WaitForSeconds(seconds);
-        }
-    }
-
-    /// <summary>
-    /// Get position random of enemy
-    /// </summary>
-    /// <param name="obj"></param>
-    /// <param name="seconds"></param>
-    /// <returns></returns>
-    private Vector2 GetPositionRandomOfEnemy(GameObject obj, float seconds)
-    {
-        var listVector2 = new List<Vector2>();
-        listVector2.Add(new Vector2(-2, 6));
-        listVector2.Add(new Vector2(0, 6));
-        listVector2.Add(new Vector2(2, 6));
-
-        int index = Random.Range(0,3);
-
-        return listVector2[index];
-    }
 }

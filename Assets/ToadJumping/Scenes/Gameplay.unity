@@ -694,10 +694,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a089a2692cc20e45929ff18bf4abb3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beeEnemy: {fileID: 8009804630812550755, guid: e1c21077908dbbf42840810bc92d25d8, type: 3}
   batEnemy: {fileID: 7262436073207629735, guid: a1ec6c694e1cc99489c6959ddfd50205, type: 3}
+  beeEnemy: {fileID: 8009804630812550755, guid: e1c21077908dbbf42840810bc92d25d8, type: 3}
   ghostEnemy: {fileID: 699756011857028370, guid: cfa6e7e067650864582783e51581c4a9, type: 3}
   skullEnemy: {fileID: 3949749651885225053, guid: 0ccb228a3c7f6b742b0e15b700313d35, type: 3}
+  warning: {fileID: 5739483762430212539, guid: ae18f2bf199019a46a3c83fb1b748e3f, type: 3}
+  title: {fileID: 1400343163}
+  character: {fileID: 108374158}
+  platform: {fileID: 936433995}
+  goBtnWrap: {fileID: 2118493733}
 --- !u!4 &363322943
 Transform:
   m_ObjectHideFlags: 0
@@ -1382,7 +1387,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &615801622
 RectTransform:
   m_ObjectHideFlags: 0
