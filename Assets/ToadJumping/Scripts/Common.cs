@@ -14,10 +14,26 @@ namespace Assets.ToadJumping.Scripts
         /// </summary>
         /// <param name="posX"></param>
         /// <param name="posY"></param>
-        /// <param name="radius"></param>
         public void SpawnObject(GameObject obj, Vector2 vector2)
         {
             Instantiate(obj, vector2, Quaternion.identity);
+        }
+
+        /// <summary>
+        /// Destroy object After n Seconds
+        /// </summary>
+        /// <param name="seconds"></param>
+        /// <returns></returns>
+        public IEnumerator DestroyObjectAfterSeconds(GameObject obj, float seconds)
+        {
+            int count = 0;
+            while (count == 0)
+            {
+                var a = new WaitForSeconds(seconds);
+                yield return new WaitForSeconds(seconds);
+                Destroy(obj);
+                count++;
+            }
         }
     }
 }

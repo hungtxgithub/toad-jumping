@@ -9,9 +9,17 @@ namespace Assets.ToadJumping.Scripts
 {
     public class EnemyScript : MonoBehaviour
     {
+       
+        /// <summary>
+        /// Handle event gameObject out camera
+        /// </summary>
+        void OnBecameInvisible()
+        {
+            Destroy(gameObject);
+        }
 
         /// <summary>
-        /// Handle click button
+        /// Random enemy
         /// </summary>
         public void RandomEnemy()
         {
@@ -23,16 +31,16 @@ namespace Assets.ToadJumping.Scripts
                 new GameObjectRateVM(){GameObject = gameController.ghostEnemy, Rate = 2},
                 new GameObjectRateVM(){GameObject = gameController.skullEnemy, Rate = 1}
             };
-            StartCoroutine(SpawnObjectAfterSeconds(listGameObjecRate, 10, 15));
+            StartCoroutine(SpawnEnemyAfterSeconds(listGameObjecRate, 10, 15));
         }
 
 
         /// <summary>
-        /// Spawn object After n Seconds
+        /// Spawn enemy After n Seconds
         /// </summary>
         /// <param name="seconds"></param>
         /// <returns></returns>
-        private IEnumerator SpawnObjectAfterSeconds(List<GameObjectRateVM> listObjectRate, int secondsRandomFrom, int secondsRandomTo)
+        private IEnumerator SpawnEnemyAfterSeconds(List<GameObjectRateVM> listObjectRate, int secondsRandomFrom, int secondsRandomTo)
         {
             GameController gameController = GameObject.Find("GameController").GetComponent<GameController>();
             while (true)
@@ -53,8 +61,8 @@ namespace Assets.ToadJumping.Scripts
 
                 Vector2 positionOfEnemy = GetPositionRandomOfEnemy();
                 Vector2 positionOfWarning = new() { x = positionOfEnemy.x, y = Constant.PositionYWarning };
-                SpawnObject(obj, positionOfEnemy);
-                SpawnObject(gameController.warning, positionOfWarning);
+                gameObject.AddComponent<Common>().SpawnObject(obj, positionOfEnemy);
+                gameObject.AddComponent<Common>().SpawnObject(gameController.warning, positionOfWarning);
                 var timeRandom = Random.Range(secondsRandomFrom, secondsRandomTo + 1);
                 yield return new WaitForSeconds(timeRandom);
             }
@@ -72,16 +80,5 @@ namespace Assets.ToadJumping.Scripts
             return listVector2[index];
         }
 
-
-        /// <summary>
-        /// Spawn object with Position x, y
-        /// </summary>
-        /// <param name="posX"></param>
-        /// <param name="posY"></param>
-        /// <param name="radius"></param>
-        public void SpawnObject(GameObject obj, Vector2 vector2)
-        {
-            Instantiate(obj, vector2, Quaternion.identity);
-        }
     }
 }
