@@ -13,6 +13,7 @@ public class CharacterController : MonoBehaviour
     public float groundCheckRadius;
     public LayerMask groundLayer;
     private bool groundIsTouching;
+    public int hp = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -29,11 +30,13 @@ public class CharacterController : MonoBehaviour
 
 
         groundIsTouching = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+
         // if (groundIsTouching)
         // {
-            // moveInput = Input.GetAxis("Vertical");
-            // rbd2d.velocity = new Vector2(rbd2d.velocity.x,  jumpSpeed*moveInput);
-
+        //    GetComponent<Rigidbody2D>().gravityScale = 0;
+        // }else{
+        //    GetComponent<Rigidbody2D>().gravityScale = 1;
         // }
 
         if (Input.GetButtonDown("Jump") && groundIsTouching){
