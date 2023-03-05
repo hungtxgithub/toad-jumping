@@ -22,7 +22,8 @@ namespace Assets.ToadJumping.Scripts
 
         public GameObject SpawnObjectHasReturn(GameObject obj, Vector2 vector2)
         {
-            return Instantiate(obj, vector2, Quaternion.identity);
+            GameObject newObj = Instantiate(obj, vector2, Quaternion.identity);
+            return newObj;
         }
         /// <summary>
         /// Destroy object After n Seconds
