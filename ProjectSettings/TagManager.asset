@@ -8,11 +8,12 @@ TagManager:
   - EnemyTag
   - PlayerTag
   - CoinTag
+  - Warning
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - 
