@@ -18,6 +18,8 @@ public class GameController : MonoBehaviour
     public GameObject warning;
     public GameObject mainCharacter;
     public GameObject mainPlatform;
+    public float lastXPosition{get; set;}
+
 
     // Start is called before the first frame update
     void Start()

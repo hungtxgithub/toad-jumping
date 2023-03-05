@@ -8,7 +8,7 @@ public class Platform : MonoBehaviour
     public GameObject platformPrefab;
     private GameObject myPlat;
     private GameObject lastPlatform;
-    float lastXPosition;
+    // float lastXPosition;
     void Start()
     {
 
@@ -23,88 +23,90 @@ public class Platform : MonoBehaviour
     void OnBecameInvisible()
     {
         Destroy(gameObject);
-        int radPlatform = Random.Range(1, 4);
+
+        int radPlatform = 0;
         platformPrefab.GetComponent<BoxCollider2D>().enabled = true;
         platformPrefab.GetComponent<Platform>().enabled = true;
         platformPrefab.GetComponent<PlatformEffector2D>().enabled = true;
         platformPrefab.GetComponent<Animator>().enabled = true;
-        // float xPosition = lastPlatform.transform.position.x;
-        Debug.Log("x last position: " + lastXPosition);
-        Debug.Log("radPlatform: " + radPlatform);
-        switch (lastXPosition)
+
+        GameController gameController = GameObject.Find("GameController").GetComponent<GameController>();
+
+        float lastXPositionPlatform = gameController.lastXPosition;
+        Debug.Log("x last position: " + lastXPositionPlatform);
+        switch (lastXPositionPlatform)
         {
             case -2f:
+                 radPlatform = Random.Range(1, 3);
+                Debug.Log("radPlatform: " + radPlatform);
                 if (radPlatform == 1)
                 {
                     new Common().SpawnObject(platformPrefab, new Vector2(-2f, 5.5f));
-                    lastXPosition = -2f;
+                    gameController.lastXPosition = -2f;
                     Debug.Log("random dem -2 ");
-                    Debug.Log("set value  lastXPosition "+  lastXPosition);
-
+                    // Debug.Log("set value  lastXPosition " + lastXPosition);
                 }
                 else if (radPlatform == 2)
                 {
                     new Common().SpawnObject(platformPrefab, new Vector2(0, 5.5f));
                     Debug.Log("random dem 0 ");
 
-                    lastXPosition = 0;
-                    Debug.Log("set value  lastXPosition "+  lastXPosition);
+                    gameController.lastXPosition = 0;
+                    // Debug.Log("set value  lastXPosition " + lastXPosition);
 
                 }
                 break;
             case 0:
+                 radPlatform = Random.Range(1, 4);
+                Debug.Log("radPlatform: " + radPlatform);
                 if (radPlatform == 1)
                 {
                     new Common().SpawnObject(platformPrefab, new Vector2(-2f, 5.5f));
-                    lastXPosition = -2f;
+                    gameController.lastXPosition = -2f;
                     Debug.Log("random dem -2 ");
-                    Debug.Log("set value  lastXPosition "+  lastXPosition);
+                    // Debug.Log("set value  lastXPosition " + lastXPosition);
 
                 }
                 else if (radPlatform == 2)
                 {
                     new Common().SpawnObject(platformPrefab, new Vector2(0, 5.5f));
-                    lastXPosition = 0;
+                    gameController.lastXPosition = 0;
                     Debug.Log("random dem 0 ");
-                    Debug.Log("set value  lastXPosition "+  lastXPosition);
+                    // Debug.Log("set value  lastXPosition " + lastXPosition);
 
 
                 }
                 else if (radPlatform == 3)
                 {
                     new Common().SpawnObject(platformPrefab, new Vector2(2f, 5.5f));
-                    lastXPosition = 2f;
+                    gameController.lastXPosition = 2f;
                     Debug.Log("random dem 2 ");
-                    Debug.Log("set value  lastXPosition "+  lastXPosition);
-
-
+                    // Debug.Log("set value  lastXPosition " + lastXPosition);
                 }
                 break;
             case 2f:
+                 radPlatform = Random.Range(2, 4);
+                Debug.Log("radPlatform: " + radPlatform);
                 if (radPlatform == 3)
                 {
                     new Common().SpawnObject(platformPrefab, new Vector2(2f, 5.5f));
-                    lastXPosition = 2f;
+                    gameController.lastXPosition = 2f;
                     Debug.Log("random dem 2 ");
-                    Debug.Log("set value  lastXPosition "+  lastXPosition);
-
-
+                    // Debug.Log("set value  lastXPosition " + lastXPosition);
                 }
                 else if (radPlatform == 2)
                 {
                     new Common().SpawnObject(platformPrefab, new Vector2(0, 5.5f));
-                    lastXPosition = 0;
+                    gameController.lastXPosition = 0;
                     Debug.Log("random dem 0 ");
-                    Debug.Log("set value  lastXPosition "+  lastXPosition);
-
-
+                    // Debug.Log("set value  lastXPosition " + lastXPosition);
                 }
                 break;
             default:
                 new Common().SpawnObject(platformPrefab, new Vector2(0, 5.5f));
-                lastXPosition = 0;
+                gameController.lastXPosition = 0;
                 break;
-
+                Debug.Log("set value  lastXPosition " + gameController.lastXPosition);
 
         }
         // if (radPlatform == 1)
@@ -126,20 +128,22 @@ public class Platform : MonoBehaviour
 
     public void RandomStartPlatform(GameObject mainPlatform)
     {
+        GameController gameController = GameObject.Find("GameController").GetComponent<GameController>();
         List<int> availblePositions = new List<int>();
         // foreach (Vector2 v2 in Constant.LIST_POSITION_PLATFORM_START)
         // {
         //     lastPlatform = new Common().SpawnObjectHasReturn(mainPlatform, v2);
-        //     lastXPosition = v2.x;
+        //    gameController.lastXPosition = v2.x;
         // // System.Console.WriteLine("x last position: " + lastPlatform);
 
         // }
 
         for (int i = 0; i < Constant.LIST_POSITION_PLATFORM.Count; i += 3)
         {
-            new Common().SpawnObject(mainPlatform, Constant.LIST_POSITION_PLATFORM[i + 1]);
+            lastPlatform = new Common().SpawnObjectHasReturn(mainPlatform, Constant.LIST_POSITION_PLATFORM[i + 1]);
+            gameController.lastXPosition = Constant.LIST_POSITION_PLATFORM[i + 1].x;
         }
-        // //     int radPlatform = Random.Range(1, 3);
+        // //      radPlatform = Random.Range(1, 3);
         // //     int firstPlat = 0;
         // //     int firstPosition = -1;
         // //     for (int j = 0; j < radPlatform; j++)
