@@ -16,17 +16,19 @@ public class GameController : MonoBehaviour
     public GameObject ghostEnemy;
     public GameObject skullEnemy;
     public GameObject warning;
+    public GameObject mainCharacter;
+    public GameObject mainPlatform;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     /// <summary>
@@ -38,9 +40,10 @@ public class GameController : MonoBehaviour
         character.SetActive(false);
         platform.SetActive(false);
         goBtnWrap.SetActive(false);
-
         //Random enemy function
         gameObject.AddComponent<EnemyScript>().RandomEnemy();
+        new Common().SpawnObject(mainCharacter, new Vector2(0, 0.5f));
+        new Platform().RandomStartPlatform(mainPlatform);
     }
 
 

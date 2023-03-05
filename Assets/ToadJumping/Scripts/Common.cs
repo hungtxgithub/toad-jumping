@@ -6,9 +6,9 @@ using UnityEngine;
 
 namespace Assets.ToadJumping.Scripts
 {
-    public class Common: MonoBehaviour
+    public class Common : MonoBehaviour
     {
-        
+
         /// <summary>
         /// Spawn object with Position x, y
         /// </summary>
@@ -19,6 +19,11 @@ namespace Assets.ToadJumping.Scripts
             Instantiate(obj, vector2, Quaternion.identity);
         }
 
+
+        public GameObject SpawnObjectHasReturn(GameObject obj, Vector2 vector2)
+        {
+            return Instantiate(obj, vector2, Quaternion.identity);
+        }
         /// <summary>
         /// Destroy object After n Seconds
         /// </summary>

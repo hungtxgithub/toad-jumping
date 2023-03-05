@@ -19,6 +19,44 @@ namespace Assets.ToadJumping.Scripts
         };
 
         public const float PositionYWarning = 4f;
+        public static readonly List<Vector2> LIST_POSITION_PLATFORM = new()
+        {
+            new Vector2() { x = -2f, y =-2 },
+            new Vector2() { x = 0f, y =-2 },
+            new Vector2() { x = 2f, y =-2 },
+            new Vector2() { x = -2f, y = -0.5f },
+            new Vector2() { x = 0f, y = -0.5f },
+            new Vector2() { x = 2f, y = -0.5f },
+            new Vector2() { x = -2f, y = 1f },
+            new Vector2() { x = 0f, y = 1f },
+            new Vector2() { x = 2f, y = 1f },
+            new Vector2() { x = -2f, y = 2.5f },
+            new Vector2() { x = 0f, y = 2.5f },
+            new Vector2() { x = 2f, y = 2.5f },
+            new Vector2() { x = -2f, y = 4f },
+            new Vector2() { x = 0f, y = 4f },
+            new Vector2() { x = 2f, y = 4f },
+            new Vector2() { x = -2f, y = 5.5f },
+            new Vector2() { x = 0f, y = 5.5f },
+            new Vector2() { x = 2f, y = 5.5f },
+             new Vector2() { x = -2f, y =7 },
+            new Vector2() { x = 0f, y = 7 },
+            new Vector2() { x = 2f, y = 7 }
+        };
+
+          public static readonly List<Vector2> LIST_POSITION_PLATFORM_START = new()
+        {
+            new Vector2() { x = -2f, y =-2 },
+            new Vector2() { x = 0f, y = -0.5f },
+            new Vector2() { x = 0f, y = 1f },
+            new Vector2() { x = 2f, y = 1f },
+            new Vector2() { x = -2f, y = 2.5f },
+            new Vector2() { x = -2f, y = 4f },
+            new Vector2() { x = 0f, y = 4f },
+            new Vector2() { x = 2f, y = 5.5f },
+            new Vector2() { x = 0f, y = 7 },
+            new Vector2() { x = 2f, y = 7 }
+        };
     }
 
 

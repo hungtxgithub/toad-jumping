@@ -7,43 +7,79 @@ public class Platform : MonoBehaviour
     // Start is called before the first frame update
     public GameObject platformPrefab;
     private GameObject myPlat;
+    private GameObject lastPlatform;
     void Start()
     {
-        platformPrefab.GetComponent<BoxCollider2D>().enabled = true;
-        platformPrefab.GetComponent<Platform>().enabled = true;
-        platformPrefab.GetComponent<PlatformEffector2D>().enabled = true;
-        platformPrefab.GetComponent<Animator>().enabled = true;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        // if (gameObject.transform.position.y <= -5)
-        // {
-        //   Destroy(gameObject);
-        //myPlat = (GameObject)Instantiate(platformPrefab, new Vector2(Random.Range(-2f, 2f), 10 + Random.Range(0.5f, 0.8f)), Quaternion.identity);
-
-        // }
         transform.Translate(Vector3.down * 1 * Time.deltaTime);
     }
 
     void OnBecameInvisible()
     {
-        Destroy(gameObject);
-
-        myPlat = (GameObject)Instantiate(platformPrefab, new Vector2(Random.Range(-2f, 2f), 10 + Random.Range(0.5f, 0.8f)), Quaternion.identity);
+ 
 
     }
-    // private void OnCollisionEnter2D(Collision2D collision) {
-    //     // if(collision.gameObject.GetComponent<Rigidbody2D>().velocity.y<=0){
-    //     //     collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector3.up * 6f);
-    //     // }
 
 
-    //     if (collision.gameObject.tag == "MainCharacter")
-    //     {
-    //          Debug.Log("The player collided with this object.");
-    //     }
-    // }
+    public void RandomStartPlatform(GameObject mainPlatform)
+    {
+        List<int> availblePositions = new List<int>();
+        foreach (Vector2 v2 in Constant.LIST_POSITION_PLATFORM_START)
+        {
+            lastPlatform = new Common().SpawnObjectHasReturn(mainPlatform, v2);
+        }
+
+        // for (int i = 0; i < Constant.LIST_POSITION_PLATFORM.Count; i += 3)
+        // {
+        //     new Common().SpawnObject(mainPlatform, Constant.LIST_POSITION_PLATFORM[i+1]);
+
+        // //     int radPlatform = Random.Range(1, 3);
+        // //     int firstPlat = 0;
+        // //     int firstPosition = -1;
+        // //     for (int j = 0; j < radPlatform; j++)
+        // //     {
+        // //         if (firstPlat == 0)
+        // //         {
+        // //             switch (radPlatform)
+        // //             {
+        // //                 case 0:
+        // //                     new Common().SpawnObject(mainPlatform, Constant.LIST_POSITION_PLATFORM[i]);
+        // //                     availblePositions.Add(1);
+        // //                     availblePositions.Add(2);
+        // //                     firstPosition = 0;
+        // //                     break;
+        // //                 case 2:
+        // //                     new Common().SpawnObject(mainPlatform, Constant.LIST_POSITION_PLATFORM[i + 1]);
+        // //                     availblePositions.Add(1);
+        // //                     availblePositions.Add(2);
+        // //                     availblePositions.Add(3);
+        // //                     firstPosition = 1;
+        // //                     break;
+        // //                 case 3:
+        // //                     new Common().SpawnObject(mainPlatform, Constant.LIST_POSITION_PLATFORM[i + 2]);
+        // //                     availblePositions.Add(2);
+        // //                     availblePositions.Add(3);
+        // //                     firstPosition = 2;
+        // //                     break;
+        // //             }
+        // //             firstPlat++;
+        // //         }
+        // //         else
+        // //         {
+        // //             if (Random.Range(1, 10) > 5)
+        // //             {
+
+        // //                 new Common().SpawnObject(mainPlatform, Constant.LIST_POSITION_PLATFORM[i + j]);
+        // //             }
+        // //         }
+        // //     }
+
+        // }
+
+    }
 }
