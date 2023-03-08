@@ -37,7 +37,7 @@ public class Platform : MonoBehaviour
         switch (lastXPositionPlatform)
         {
             case -2f:
-                 radPlatform = Random.Range(1, 3);
+                radPlatform = Random.Range(1, 3);
                 Debug.Log("radPlatform: " + radPlatform);
                 if (radPlatform == 1)
                 {
@@ -57,7 +57,7 @@ public class Platform : MonoBehaviour
                 }
                 break;
             case 0:
-                 radPlatform = Random.Range(1, 4);
+                radPlatform = Random.Range(1, 4);
                 Debug.Log("radPlatform: " + radPlatform);
                 if (radPlatform == 1)
                 {
@@ -85,7 +85,7 @@ public class Platform : MonoBehaviour
                 }
                 break;
             case 2f:
-                 radPlatform = Random.Range(2, 4);
+                radPlatform = Random.Range(2, 4);
                 Debug.Log("radPlatform: " + radPlatform);
                 if (radPlatform == 3)
                 {
@@ -130,19 +130,18 @@ public class Platform : MonoBehaviour
     {
         GameController gameController = GameObject.Find("GameController").GetComponent<GameController>();
         List<int> availblePositions = new List<int>();
-        // foreach (Vector2 v2 in Constant.LIST_POSITION_PLATFORM_START)
-        // {
-        //     lastPlatform = new Common().SpawnObjectHasReturn(mainPlatform, v2);
-        //    gameController.lastXPosition = v2.x;
-        // // System.Console.WriteLine("x last position: " + lastPlatform);
-
-        // }
-
-        for (int i = 0; i < Constant.LIST_POSITION_PLATFORM.Count; i += 3)
+        foreach (Vector2 v2 in Constant.LIST_POSITION_PLATFORM_START)
         {
-            lastPlatform = new Common().SpawnObjectHasReturn(mainPlatform, Constant.LIST_POSITION_PLATFORM[i + 1]);
-            gameController.lastXPosition = Constant.LIST_POSITION_PLATFORM[i + 1].x;
+            lastPlatform = new Common().SpawnObjectHasReturn(mainPlatform, v2);
+            gameController.lastXPosition = v2.x;
+            System.Console.WriteLine("x last position: " + gameController.lastXPosition);
         }
+
+        // for (int i = 0; i < Constant.LIST_POSITION_PLATFORM.Count; i += 3)
+        // {
+        //     lastPlatform = new Common().SpawnObjectHasReturn(mainPlatform, Constant.LIST_POSITION_PLATFORM[i + 1]);
+        //     gameController.lastXPosition = Constant.LIST_POSITION_PLATFORM[i + 1].x;
+        // }
         // //      radPlatform = Random.Range(1, 3);
         // //     int firstPlat = 0;
         // //     int firstPosition = -1;
