@@ -8,6 +8,8 @@ public class Platform : MonoBehaviour
     public GameObject platformPrefab;
     private GameObject myPlat;
     private GameObject lastPlatform;
+
+    private Item item;
     // float lastXPosition;
     void Start()
     {
@@ -23,6 +25,7 @@ public class Platform : MonoBehaviour
     void OnBecameInvisible()
     {
         Destroy(gameObject);
+        if (item != null) Destroy(item);
 
         int radPlatform = 0;
         platformPrefab.GetComponent<BoxCollider2D>().enabled = true;
