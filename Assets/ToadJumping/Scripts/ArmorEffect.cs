@@ -19,7 +19,7 @@ public class ArmorEffect : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag.Equals("EnemyTag"))
+        if(collision.gameObject.tag.Equals("Warning"))
         {
             Destroy(collision.gameObject);
             Destroy(gameObject);
