@@ -9,9 +9,18 @@ public abstract class Item : MonoBehaviour, IEffectItem
     {
     }
 
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.gameObject.tag.Equals("MainCharacter"))
+		{
+			Destroy(gameObject);
+			Effect(collision.gameObject);
+		}
+	}
+
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if(collision.gameObject.tag.Equals("PlayerTag"))
+		if(collision.gameObject.tag.Equals("MainCharacter"))
 		{
 			Destroy(gameObject);
 			Effect(collision.gameObject);

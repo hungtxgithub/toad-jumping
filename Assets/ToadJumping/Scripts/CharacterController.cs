@@ -28,6 +28,7 @@ public class CharacterController : MonoBehaviour
     public LayerMask groundLayer;
     private bool groundIsTouching;
     public int hp = 1;
+    public const int MaxHp = 5;
 
     private void Awake()
     {
@@ -63,8 +64,14 @@ public class CharacterController : MonoBehaviour
             rbd2d.velocity = new Vector2(rbd2d.velocity.x, jumpSpeed);
         }
 
+        // Debug part
+        DebugHp();
     }
 
+    void DebugHp()
+    {
+        if (Input.GetKeyDown(KeyCode.H)) print("HP: " + hp);
+    }
 
     /// <summary>
     /// Destroy character when falling
@@ -75,4 +82,12 @@ public class CharacterController : MonoBehaviour
         Destroy(this);
     }
 
+    public void AddMoreHp(int hp)
+    {
+        int newHp = this.hp + hp;
+        if(newHp <= MaxHp)
+        {
+            this.hp = newHp;
+        }
+    }
 }
