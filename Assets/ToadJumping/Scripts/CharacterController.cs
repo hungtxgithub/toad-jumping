@@ -64,13 +64,6 @@ public class CharacterController : MonoBehaviour
             rbd2d.velocity = new Vector2(rbd2d.velocity.x, jumpSpeed);
         }
 
-        // Debug part
-        DebugHp();
-    }
-
-    void DebugHp()
-    {
-        if (Input.GetKeyDown(KeyCode.H)) print("HP: " + hp);
     }
 
     /// <summary>
@@ -89,5 +82,10 @@ public class CharacterController : MonoBehaviour
         {
             this.hp = newHp;
         }
+    }
+
+    public void Fly()
+    {
+        // TODO: Implement fly effect
     }
 }
