@@ -6,6 +6,11 @@ public class HeartItem : Item
 {
     public override void Effect(GameObject player)
     {
-        print("+ 1HP");
+        var characterController = player.GetComponent<CharacterController>();
+
+        if (characterController != null)
+        {
+            characterController.AddMoreHp(1);
+        }
     }
 }
