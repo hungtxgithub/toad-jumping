@@ -14,4 +14,28 @@ public class TestItemController : MonoBehaviour
     {
         Instantiate(prefabItem, new Vector2(0, 1.65f), Quaternion.identity);    
     }
+
+	private void Update()
+	{
+        DebugCharacter();
+        DebugCoin();
+	}
+
+    void DebugCharacter()
+    {
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            var character = GameObject.FindGameObjectWithTag("MainCharacter")
+                .GetComponent<CharacterController>();
+			print($"Debug - HP: {character.hp}");
+        }
+    }
+
+    void DebugCoin()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            print($"Debug - Coin: {InventoryController.CoinAmount}");
+        }
+    }
 }
