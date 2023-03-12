@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Enemy
   - Warning
+  - Undefined
+  - MainCharacter
+  - Platform
+  - GameoverDialog
+  - Top
   layers:
   - Default
   - TransparentFX

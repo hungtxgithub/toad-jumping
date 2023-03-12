@@ -8,6 +8,23 @@ namespace Assets.ToadJumping.Scripts
 {
     public class Common : MonoBehaviour
     {
+        private static Common instance;
+        public static Common Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new GameObject().AddComponent<Common>();
+                }
+                return instance;
+            }
+        }
+
+        private void Awake()
+        {
+            instance = this;
+        }
 
         /// <summary>
         /// Spawn object with Position x, y
@@ -40,6 +57,14 @@ namespace Assets.ToadJumping.Scripts
                 Destroy(obj);
                 count++;
             }
+        }
+
+        public void DestroyWithTag(string destroyTag)
+        {
+            GameObject[] destroyObject;
+            destroyObject = GameObject.FindGameObjectsWithTag(destroyTag);
+            foreach (GameObject oneObject in destroyObject)
+                Destroy(oneObject);
         }
     }
 }

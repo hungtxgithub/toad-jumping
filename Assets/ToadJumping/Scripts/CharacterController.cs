@@ -4,6 +4,20 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
+    private static CharacterController instance;
+    public static CharacterController Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new GameObject().AddComponent<CharacterController>();
+            }
+            return instance;
+        }
+    }
+
+
     private Rigidbody2D rbd2d;
     public float moveInput;
     public float speed = 2f;
@@ -14,6 +28,11 @@ public class CharacterController : MonoBehaviour
     public LayerMask groundLayer;
     private bool groundIsTouching;
     public int hp = 1;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -39,10 +58,21 @@ public class CharacterController : MonoBehaviour
         //    GetComponent<Rigidbody2D>().gravityScale = 1;
         // }
 
-        if (Input.GetButtonDown("Jump") && groundIsTouching){
-            rbd2d.velocity = new Vector2(rbd2d.velocity.x,  jumpSpeed);
+        if (Input.GetButtonDown("Jump") && groundIsTouching)
+        {
+            rbd2d.velocity = new Vector2(rbd2d.velocity.x, jumpSpeed);
         }
 
+    }
+
+
+    /// <summary>
+    /// Destroy character when falling
+    /// </summary>
+    private void OnBecameInvisible()
+    {
+        GameController.Instance.GameOverUI();
+        Destroy(this);
     }
 
 }

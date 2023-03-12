@@ -9,7 +9,24 @@ namespace Assets.ToadJumping.Scripts
 {
     public class EnemyScript : MonoBehaviour
     {
-       
+        private static EnemyScript instance;
+        public static EnemyScript Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new GameObject().AddComponent<EnemyScript>();
+                }
+                return instance;
+            }
+        }
+
+        private void Awake()
+        {
+            instance = this;
+        }
+
         /// <summary>
         /// Handle event gameObject out camera
         /// </summary>
@@ -23,8 +40,7 @@ namespace Assets.ToadJumping.Scripts
         /// </summary>
         public void RandomEnemy()
         {
-            GameController gameController = GameObject.Find("GameController").GetComponent<GameController>();
-
+            GameController gameController = GameController.Instance;
             List<GameObjectRateVM> listGameObjecRate = new() {
                 new GameObjectRateVM(){GameObject = gameController.batEnemy, Rate = 4},
                 new GameObjectRateVM(){GameObject = gameController.beeEnemy, Rate = 3},
@@ -42,7 +58,7 @@ namespace Assets.ToadJumping.Scripts
         /// <returns></returns>
         private IEnumerator SpawnEnemyAfterSeconds(List<GameObjectRateVM> listObjectRate, int secondsRandomFrom, int secondsRandomTo)
         {
-            GameController gameController = GameObject.Find("GameController").GetComponent<GameController>();
+            GameController gameController = GameController.Instance;
             while (true)
             {
                 List<GameObject> listGameObject = new();
@@ -61,8 +77,8 @@ namespace Assets.ToadJumping.Scripts
 
                 Vector2 positionOfEnemy = GetPositionRandomOfEnemy();
                 Vector2 positionOfWarning = new() { x = positionOfEnemy.x, y = Constant.PositionYWarning };
-                gameObject.AddComponent<Common>().SpawnObject(obj, positionOfEnemy);
-                gameObject.AddComponent<Common>().SpawnObject(gameController.warning, positionOfWarning);
+                Common.Instance.SpawnObject(obj, positionOfEnemy);
+                Common.Instance.SpawnObject(gameController.warning, positionOfWarning);
                 var timeRandom = Random.Range(secondsRandomFrom, secondsRandomTo + 1);
                 yield return new WaitForSeconds(timeRandom);
             }
@@ -80,5 +96,18 @@ namespace Assets.ToadJumping.Scripts
             return listVector2[index];
         }
 
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.CompareTag("MainCharacter"))
+            {
+                collision.gameObject.GetComponent<CharacterController>().hp -= 1;
+                if(collision.gameObject.GetComponent<CharacterController>().hp == 0)
+                {
+                    GameController.Instance.GameOverUI();
+                    Destroy(collision.gameObject);
+                }
+            }
+        }
     }
 }
