@@ -59,18 +59,18 @@ public class Platform : MonoBehaviour
         {
             case -2f:
                 radPlatform = Random.Range(1, 3);
-                Debug.Log("radPlatform: " + radPlatform);
+                // Debug.Log("radPlatform: " + radPlatform);
                 if (radPlatform == 1)
                 {
                     new Common().SpawnObject(platformPrefab, new Vector2(-2f, 5.5f));
                     gameController.lastXPosition = -2f;
-                    Debug.Log("random dem -2 ");
+                    // Debug.Log("random dem -2 ");
                     // Debug.Log("set value  lastXPosition " + lastXPosition);
                 }
                 else if (radPlatform == 2)
                 {
                     new Common().SpawnObject(platformPrefab, new Vector2(0, 5.5f));
-                    Debug.Log("random dem 0 ");
+                    // Debug.Log("random dem 0 ");
 
                     gameController.lastXPosition = 0;
                     // Debug.Log("set value  lastXPosition " + lastXPosition);
@@ -79,12 +79,12 @@ public class Platform : MonoBehaviour
                 break;
             case 0:
                 radPlatform = Random.Range(1, 4);
-                Debug.Log("radPlatform: " + radPlatform);
+                // Debug.Log("radPlatform: " + radPlatform);
                 if (radPlatform == 1)
                 {
                     new Common().SpawnObject(platformPrefab, new Vector2(-2f, 5.5f));
                     gameController.lastXPosition = -2f;
-                    Debug.Log("random dem -2 ");
+                    // Debug.Log("random dem -2 ");
                     // Debug.Log("set value  lastXPosition " + lastXPosition);
 
                 }
@@ -92,7 +92,7 @@ public class Platform : MonoBehaviour
                 {
                     new Common().SpawnObject(platformPrefab, new Vector2(0, 5.5f));
                     gameController.lastXPosition = 0;
-                    Debug.Log("random dem 0 ");
+                    // Debug.Log("random dem 0 ");
                     // Debug.Log("set value  lastXPosition " + lastXPosition);
 
 
@@ -101,7 +101,7 @@ public class Platform : MonoBehaviour
                 {
                     new Common().SpawnObject(platformPrefab, new Vector2(2f, 5.5f));
                     gameController.lastXPosition = 2f;
-                    Debug.Log("random dem 2 ");
+                    // Debug.Log("random dem 2 ");
                     // Debug.Log("set value  lastXPosition " + lastXPosition);
                 }
                 break;

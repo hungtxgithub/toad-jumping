@@ -21,7 +21,7 @@ public class CharacterController : MonoBehaviour
     private Rigidbody2D rbd2d;
     public float moveInput;
     public float speed = 2f;
-    public float jumpSpeed = 5f;
+    public float jumpSpeed = 4f;
 
     public Transform groundCheck;
     public float groundCheckRadius;
@@ -29,7 +29,9 @@ public class CharacterController : MonoBehaviour
     private bool groundIsTouching;
     public int hp = 1;
     public const int MaxHp = 5;
-
+    public float jumpforce = 0f;
+    public float jumpHigh = 5f;
+    public int animateState = 0;
     private void Awake()
     {
         instance = this;
@@ -45,12 +47,30 @@ public class CharacterController : MonoBehaviour
     void Update()
     {
         // gameObject.transform.position.y 
-        moveInput = Input.GetAxis("Horizontal");
-        rbd2d.velocity = new Vector2(moveInput * speed, rbd2d.velocity.y);
-
+        // moveInput = Input.GetAxis("Horizontal");
+        // rbd2d.velocity = new Vector2(moveInput * speed, rbd2d.velocity.y);
+       Animator  mainAnimator=   GetComponent<Animator>();
 
         groundIsTouching = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
+
+
+        if (!groundIsTouching && jumpforce==6f)
+        {
+             
+
+             if (rbd2d.transform.position.x<=-2 ||rbd2d.transform.position.x>=2){
+                 Debug.Log(" dung: " + rbd2d.transform.position.x);
+                jumpforce =0f;
+                rbd2d.velocity = new Vector2( 0f, rbd2d.velocity.y); 
+             }
+             if(rbd2d.transform.position.x>=-0.1f&&rbd2d.transform.position.x<=0.1f){
+               
+                 Debug.Log(" dung: " + rbd2d.transform.position.x);
+                jumpforce =0f;
+                rbd2d.velocity = new Vector2( 0f, rbd2d.velocity.y); 
+             }
+        }
 
         // if (groundIsTouching)
         // {
@@ -58,12 +78,35 @@ public class CharacterController : MonoBehaviour
         // }else{
         //    GetComponent<Rigidbody2D>().gravityScale = 1;
         // }
-
-        if (Input.GetButtonDown("Jump") && groundIsTouching)
+         if (groundIsTouching && jumpforce==6f)
         {
-            rbd2d.velocity = new Vector2(rbd2d.velocity.x, jumpSpeed);
-        }
+            mainAnimator.SetTrigger("stayTr");
 
+        }
+        
+           
+        if (  groundIsTouching)
+        {
+          jumpforce = 6f;
+           if(Input.GetKey(KeyCode.LeftArrow)){
+                rbd2d.velocity = new Vector2( -jumpforce, jumpSpeed); //for left jumping
+                
+                mainAnimator.SetTrigger("jumpTr");
+                GetComponent<SpriteRenderer>().flipX = true;
+
+            }
+            if(Input.GetKey(KeyCode.RightArrow)){
+                rbd2d.velocity = new Vector2( jumpforce, jumpSpeed); //for right jumping
+                mainAnimator.SetTrigger("jumpTr");
+                GetComponent<SpriteRenderer>().flipX = false;
+
+
+            }
+            if(Input.GetButtonDown("Jump")){
+            rbd2d.velocity = new Vector2(rbd2d.velocity.x, jumpSpeed);
+            }
+        }
+        
     }
 
     /// <summary>
