@@ -31,6 +31,10 @@ public class CharacterController : MonoBehaviour
     public int hp = 1;
     public const int MaxHp = 5;
 
+    // Item effect
+    private bool hasArmor = false;
+    [SerializeField] GameObject armor;
+
     private void Awake()
     {
         instance = this;
@@ -65,6 +69,7 @@ public class CharacterController : MonoBehaviour
             rbd2d.velocity = new Vector2(rbd2d.velocity.x, jumpSpeed);
         }
 
+        armor.SetActive(hasArmor);
     }
 
     /// <summary>
@@ -88,6 +93,29 @@ public class CharacterController : MonoBehaviour
 	void OnTriggerEnter2D(Collider2D collision)
 	{
         PickUpItems(collision);
+        CollideWithEnemy(collision);
+	}
+
+    void CollideWithEnemy(Collider2D collision)
+    {
+		if (collision.gameObject.CompareTag("Enemy"))
+		{
+            if (!hasArmor)
+            {
+                hp--;
+            }
+
+            // Destory enemy after collide
+            Destroy(collision.gameObject);
+			if (hp <= 0)
+			{
+				GameController.Instance.GameOverUI();
+				Destroy(gameObject);
+			}
+
+            // Remove armor after collide
+            hasArmor = false;
+		}
 	}
 
     void PickUpItems(Collider2D collision)
@@ -129,6 +157,6 @@ public class CharacterController : MonoBehaviour
 
 	void ApplyArmorItemEffect()
 	{
-
+        hasArmor = true;
 	}
 }
