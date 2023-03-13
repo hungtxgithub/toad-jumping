@@ -46,15 +46,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: {fileID: 9162791397391083187, guid: aa72277fb3742c64dbade2696cddb4a9, type: 3}
   character: {fileID: 5323560271685641325, guid: 4db8073533bf72b47bfad6e39c8b1c8b, type: 3}
-  platform: {fileID: 2082480872553154953, guid: 592abb9642a716846a3cd0f5074db20e, type: 3}
   goBtnWrap: {fileID: 7713330121837460825, guid: 5bf34fcb19d83464a9235304d14352ee, type: 3}
+  platform: {fileID: 2082480872553154953, guid: 592abb9642a716846a3cd0f5074db20e, type: 3}
   batEnemy: {fileID: 875481308826221371, guid: a1ec6c694e1cc99489c6959ddfd50205, type: 3}
   beeEnemy: {fileID: 1828140460116363123, guid: e1c21077908dbbf42840810bc92d25d8, type: 3}
   ghostEnemy: {fileID: 5298934303160121788, guid: cfa6e7e067650864582783e51581c4a9, type: 3}
   skullEnemy: {fileID: 5710394214854542636, guid: 0ccb228a3c7f6b742b0e15b700313d35, type: 3}
   warning: {fileID: 5739483762430212539, guid: ae18f2bf199019a46a3c83fb1b748e3f, type: 3}
   mainCharacter: {fileID: 5761597978777637047, guid: 7635676244057e54bb8f4acb9805f402, type: 3}
-  mainPlatform: {fileID: 1172358026505451977, guid: e02a3aa4079229c49b8405d4272d399e, type: 3}
+  mainPlatform1: {fileID: 239334754317457088, guid: 79e0749457fda7848bff0295e6339708, type: 3}
+  mainPlatform2: {fileID: 134282426228059073, guid: 0057f2734102b3d41b72eeb183eec9b4, type: 3}
+  mainPlatform3: {fileID: 134282426228059073, guid: be15ffc77eaefbe4e8c4e168cd078fa3, type: 3}
   gameoverDialog: {fileID: 7357159698367727572, guid: 8031a9e57bcbdf34faf978e88533d2e2, type: 3}
   top: {fileID: 5994598904009573919, guid: de2b4ab3b94b1514ea2ab09439adf63d, type: 3}
-  characterController: {fileID: 0}

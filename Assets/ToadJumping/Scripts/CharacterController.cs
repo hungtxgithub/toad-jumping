@@ -52,12 +52,14 @@ public class CharacterController : MonoBehaviour
         groundIsTouching = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
 
-        // if (groundIsTouching)
-        // {
+        //if (groundIsTouching)
+        //{
         //    GetComponent<Rigidbody2D>().gravityScale = 0;
-        // }else{
+        //}
+        //else
+        //{
         //    GetComponent<Rigidbody2D>().gravityScale = 1;
-        // }
+        //}
 
         if (Input.GetButtonDown("Jump") && groundIsTouching)
         {

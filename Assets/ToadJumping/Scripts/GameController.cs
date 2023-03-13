@@ -21,11 +21,10 @@ public class GameController : MonoBehaviour
         }
     }
 
-
     public GameObject title;
     public GameObject character;
-    public GameObject platform;
     public GameObject goBtnWrap;
+    public GameObject platform;
 
     public GameObject batEnemy;
     public GameObject beeEnemy;
@@ -33,7 +32,10 @@ public class GameController : MonoBehaviour
     public GameObject skullEnemy;
     public GameObject warning;
     public GameObject mainCharacter;
-    public GameObject mainPlatform;
+
+    public GameObject mainPlatform1;
+    public GameObject mainPlatform2;
+    public GameObject mainPlatform3;
 
     public GameObject gameoverDialog;
     public GameObject top;
@@ -47,16 +49,14 @@ public class GameController : MonoBehaviour
         instance = this;
     }
 
-    // Start is called before the first frame update
-    void Start()
+
+    public List<PlatformObjectVM> GetListPlatform()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        return new List<PlatformObjectVM>(){
+            new PlatformObjectVM(){GameObject = mainPlatform1, IsNormal = true},
+            new PlatformObjectVM(){GameObject = mainPlatform2, IsNormal = false},
+            new PlatformObjectVM(){GameObject = mainPlatform3, IsNormal = false}
+        };
     }
 
     /// <summary>
@@ -68,7 +68,7 @@ public class GameController : MonoBehaviour
         //Random enemy function
         EnemyScript.Instance.RandomEnemy();
         Common.Instance.SpawnObject(mainCharacter, new Vector2(0, 0.5f));
-        Platform.Instance.RandomStartPlatform(mainPlatform);
+        Platform.Instance.RandomStartPlatform(GetListPlatform());
     }
 
     public void GameOverUI()
@@ -101,7 +101,7 @@ public class GameController : MonoBehaviour
         Common.Instance.DestroyWithTag("Warning");
         EnemyScript.Instance.RandomEnemy();
         Common.Instance.SpawnObject(mainCharacter, new Vector2(0, 0.5f));
-        Platform.Instance.RandomStartPlatform(mainPlatform);
+        Platform.Instance.RandomStartPlatform(GetListPlatform());
         Common.Instance.SpawnObject(top, new Vector2(0f, 0f));
 
         Time.timeScale = 1;
