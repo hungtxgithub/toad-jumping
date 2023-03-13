@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e69774ec0b5ca1b4285c0bf336fc3a2e, type: 3}
-  m_Name: HeartItem
+  m_Name: ArmorItem
   m_EditorClassIdentifier: 
-  objectName: heart
+  objectName: armor
   sprite: {fileID: 0}
-  quantity: 1
+  quantity: 0
   stackable: 0
-  itemType: 1
+  itemType: 2

@@ -99,15 +99,7 @@ namespace Assets.ToadJumping.Scripts
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.CompareTag("MainCharacter"))
-            {
-                collision.gameObject.GetComponent<CharacterController>().hp -= 1;
-                if(collision.gameObject.GetComponent<CharacterController>().hp == 0)
-                {
-                    GameController.Instance.GameOverUI();
-                    Destroy(collision.gameObject);
-                }
-            }
+           
         }
     }
 }

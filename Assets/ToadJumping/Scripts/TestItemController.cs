@@ -25,8 +25,7 @@ public class TestItemController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.H))
         {
-            var character = GameObject.FindGameObjectWithTag("MainCharacter")
-                .GetComponent<CharacterController>();
+            var character = CharacterController.Instance;
 			print($"Debug - HP: {character.hp}");
         }
     }
