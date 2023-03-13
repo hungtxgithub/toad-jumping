@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Http.Headers;
 using UnityEngine;
 
 public class CharacterController : MonoBehaviour
@@ -84,8 +85,50 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    public void Fly()
+	void OnTriggerEnter2D(Collider2D collision)
+	{
+        PickUpItems(collision);
+	}
+
+    void PickUpItems(Collider2D collision)
     {
-        // TODO: Implement fly effect
+        if (collision.gameObject.CompareTag("CanBePickedUp"))
+        {
+            Item hitObject  = collision.gameObject.GetComponent<Consumable>().item;
+            if (hitObject != null)
+            {
+				print("Hit: " + hitObject.objectName);
+
+                switch (hitObject.itemType)
+                {
+                    case Item.ItemType.COIN: ApplyCoinItemEffect(hitObject);
+                        break;
+                    case Item.ItemType.HEALTH: ApplyHealthItemEffect();
+                        break;
+                    case Item.ItemType.ARMOR: ApplyArmorItemEffect();
+                        break;
+                    default:
+                        break;
+                }
+
+                // collision.gameObject.SetActive(false);
+                Destroy(collision.gameObject);
+			}
+        }
     }
+
+    void ApplyCoinItemEffect(Item item)
+    {
+        item.quantity++;
+    }
+
+	void ApplyHealthItemEffect()
+	{
+        AddMoreHp(1);
+	}
+
+	void ApplyArmorItemEffect()
+	{
+
+	}
 }

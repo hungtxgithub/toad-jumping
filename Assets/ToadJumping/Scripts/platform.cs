@@ -43,7 +43,6 @@ public class Platform : MonoBehaviour
     void OnBecameInvisible()
     {
         Destroy(gameObject);
-        if (item != null) Destroy(item);
 
         int radPlatform = 0;
         platformPrefab.GetComponent<BoxCollider2D>().enabled = true;
