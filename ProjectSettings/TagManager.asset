@@ -5,7 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - EnemyTag
+  - PlayerTag
+  - CoinTag
   - Warning
+  - Undefined
+  - MainCharacter
+  - Platform
+  - GameoverDialog
+  - Top
   layers:
   - Default
   - TransparentFX

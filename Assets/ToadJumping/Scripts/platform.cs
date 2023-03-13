@@ -8,6 +8,26 @@ public class Platform : MonoBehaviour
     public GameObject platformPrefab;
     private GameObject myPlat;
     private GameObject lastPlatform;
+
+    private static Platform instance;
+    public static Platform Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new GameObject().AddComponent<Platform>();
+            }
+            return instance;
+        }
+    }
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
+    private Item item;
     // float lastXPosition;
     void Start()
     {
@@ -23,6 +43,7 @@ public class Platform : MonoBehaviour
     void OnBecameInvisible()
     {
         Destroy(gameObject);
+        if (item != null) Destroy(item);
 
         int radPlatform = 0;
         platformPrefab.GetComponent<BoxCollider2D>().enabled = true;
@@ -30,7 +51,7 @@ public class Platform : MonoBehaviour
         platformPrefab.GetComponent<PlatformEffector2D>().enabled = true;
         platformPrefab.GetComponent<Animator>().enabled = true;
 
-        GameController gameController = GameObject.Find("GameController").GetComponent<GameController>();
+        GameController gameController = GameController.Instance;
 
         float lastXPositionPlatform = gameController.lastXPosition;
         Debug.Log("x last position: " + lastXPositionPlatform);
