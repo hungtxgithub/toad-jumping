@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IEffectItem 
+public class Consumable : MonoBehaviour
 {
-    public void Effect(GameObject player);
+    public Item item;
 }

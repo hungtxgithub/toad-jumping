@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Http.Headers;
 using UnityEngine;
 
 public class CharacterController : MonoBehaviour
@@ -29,6 +30,10 @@ public class CharacterController : MonoBehaviour
     private bool groundIsTouching;
     public int hp = 1;
     public const int MaxHp = 5;
+
+    // Item effect
+    private bool hasArmor = false;
+    [SerializeField] GameObject armor;
 
     private void Awake()
     {
@@ -66,6 +71,7 @@ public class CharacterController : MonoBehaviour
             rbd2d.velocity = new Vector2(rbd2d.velocity.x, jumpSpeed);
         }
 
+        armor.SetActive(hasArmor);
     }
 
     /// <summary>
@@ -86,8 +92,73 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    public void Fly()
+	void OnTriggerEnter2D(Collider2D collision)
+	{
+        PickUpItems(collision);
+        CollideWithEnemy(collision);
+	}
+
+    void CollideWithEnemy(Collider2D collision)
     {
-        // TODO: Implement fly effect
+		if (collision.gameObject.CompareTag("Enemy"))
+		{
+            if (!hasArmor)
+            {
+                hp--;
+            }
+
+            // Destory enemy after collide
+            Destroy(collision.gameObject);
+			if (hp <= 0)
+			{
+				GameController.Instance.GameOverUI();
+				Destroy(gameObject);
+			}
+
+            // Remove armor after collide
+            hasArmor = false;
+		}
+	}
+
+    void PickUpItems(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("CanBePickedUp"))
+        {
+            Item hitObject  = collision.gameObject.GetComponent<Consumable>().item;
+            if (hitObject != null)
+            {
+				print("Hit: " + hitObject.objectName);
+
+                switch (hitObject.itemType)
+                {
+                    case Item.ItemType.COIN: ApplyCoinItemEffect(hitObject);
+                        break;
+                    case Item.ItemType.HEALTH: ApplyHealthItemEffect();
+                        break;
+                    case Item.ItemType.ARMOR: ApplyArmorItemEffect();
+                        break;
+                    default:
+                        break;
+                }
+
+                // collision.gameObject.SetActive(false);
+                Destroy(collision.gameObject);
+			}
+        }
     }
+
+    void ApplyCoinItemEffect(Item item)
+    {
+        item.quantity++;
+    }
+
+	void ApplyHealthItemEffect()
+	{
+        AddMoreHp(1);
+	}
+
+	void ApplyArmorItemEffect()
+	{
+        hasArmor = true;
+	}
 }
