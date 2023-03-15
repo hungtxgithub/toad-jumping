@@ -219,7 +219,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 130366830889068022, guid: ffd237fc9a005ac4d8d5b92bdce2435c, type: 3}
         m_TargetAssemblyTypeName: GameController, Assembly-CSharp
         m_MethodName: GoBtnClick
         m_Mode: 1

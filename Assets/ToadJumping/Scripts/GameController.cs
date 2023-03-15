@@ -33,6 +33,7 @@ public class GameController : MonoBehaviour
     public GameObject warning;
     public GameObject mainCharacter;
 
+    public GameObject platformContainer;
     public GameObject mainPlatform1;
     public GameObject mainPlatform2;
     public GameObject mainPlatform3;
@@ -40,6 +41,7 @@ public class GameController : MonoBehaviour
     public GameObject gameoverDialog;
     public GameObject top;
 
+    public PlatformObjectVM[] listLastPlatform { get; set; } = new PlatformObjectVM[3];
 
     public float lastXPosition { get; set; }
 
@@ -75,7 +77,6 @@ public class GameController : MonoBehaviour
     {
         Common.Instance.SpawnObject(gameoverDialog, new Vector2(0f, 0f));
         Time.timeScale = 0;
-
     }
 
     public void GoBtnUI()
@@ -96,7 +97,7 @@ public class GameController : MonoBehaviour
     {
         Common.Instance.DestroyWithTag("GameoverDialog");
         Common.Instance.DestroyWithTag("Top");
-        Common.Instance.DestroyWithTag("Platform");
+        Common.Instance.DestroyWithTag("PlatformContainer");
         Common.Instance.DestroyWithTag("Enemy");
         Common.Instance.DestroyWithTag("Warning");
         EnemyScript.Instance.RandomEnemy();

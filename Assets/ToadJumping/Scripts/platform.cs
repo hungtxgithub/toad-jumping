@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.ToadJumping.Scripts;
@@ -25,22 +25,10 @@ public class Platform : MonoBehaviour
         instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        transform.Translate(Vector2.down * 1 * Time.deltaTime);
-    }
-
-    void OnBecameInvisible()
-    {
-        //Common.Instance.SpawnObject(GameController.Instance.mainPlatform1, new Vector2(0, 6.25f));
-        Destroy(gameObject);
-    }
-
     public void RandomStartPlatform(List<PlatformObjectVM> listPlatform)
     {
         float posY = -4;
-        var listLastPlatform = new PlatformObjectVM[3];
+
 
         for (int i = 0; i < Constant.RowOfPlatform; i++)
         {
@@ -55,6 +43,7 @@ public class Platform : MonoBehaviour
             }
             else
             {
+                var listLastPlatform = GameController.Instance.listLastPlatform;
                 if (listLastPlatform[0] != null && listLastPlatform[0].IsNormal == true)
                     listPlatformInRow = RandomPlatformPos0(listPlatform, numberPlatformInRow);
                 else if (listLastPlatform[1] != null && listLastPlatform[1].IsNormal == true)
@@ -63,18 +52,22 @@ public class Platform : MonoBehaviour
                     listPlatformInRow = RandomPlatformPos2(listPlatform, numberPlatformInRow);
             }
 
-            listLastPlatform = listPlatformInRow;
+            GameController.Instance.listLastPlatform = listPlatformInRow;
+
+            var parent = Common.Instance.SpawnObjectHasReturn(GameController.Instance.platformContainer, new Vector2(0, posY));
 
             float posX = -2;
             for (int j = 0; j < 3; j++)
             {
                 if (listPlatformInRow[j] != null)
                 {
-                    Common.Instance.SpawnObject(listPlatformInRow[j].GameObject, new Vector2(posX, posY));
+                    var child = Common.Instance.SpawnObjectHasReturn(listPlatformInRow[j].GameObject, new Vector2(posX, posY));
+                    child.transform.SetParent(parent.transform);
                 }
                 posX += 2;
             }
-            posY += 1.25f;
+            posY += 1.5f;
+
         }
     }
 

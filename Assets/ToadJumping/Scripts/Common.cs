@@ -31,13 +31,13 @@ namespace Assets.ToadJumping.Scripts
         /// </summary>
         /// <param name="posX"></param>
         /// <param name="posY"></param>
-        public void SpawnObject(GameObject obj, Vector2 vector2)
+        public void SpawnObject(GameObject obj, Vector2 vector2 = new Vector2())
         {
             Instantiate(obj, vector2, Quaternion.identity);
         }
 
 
-        public GameObject SpawnObjectHasReturn(GameObject obj, Vector2 vector2)
+        public GameObject SpawnObjectHasReturn(GameObject obj, Vector2 vector2 = new Vector2())
         {
             GameObject newObj = Instantiate(obj, vector2, Quaternion.identity);
             return newObj;

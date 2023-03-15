@@ -18,7 +18,7 @@ namespace Assets.ToadJumping.Scripts
             new Vector2() { x = 1.9f, y = 4.4f }
         };
 
-        public const int RowOfPlatform = 8;
+        public const int RowOfPlatform = 7;
 
         public const float PositionYWarning = 4f;
         public static readonly List<Vector2> LIST_POSITION_PLATFORM = new()
