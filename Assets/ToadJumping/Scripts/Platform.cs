@@ -7,6 +7,7 @@ using Assets.ToadJumping.ViewModel;
 
 public class Platform : MonoBehaviour
 {
+
     private static Platform instance;
     public static Platform Instance
     {
@@ -20,7 +21,7 @@ public class Platform : MonoBehaviour
         }
     }
 
-    private void Awake()
+	private void Awake()
     {
         instance = this;
     }
