@@ -1,6 +1,7 @@
 ﻿using Assets.ToadJumping.Scripts;
 using Assets.ToadJumping.ViewModel;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlatformContainer : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class PlatformContainer : MonoBehaviour
             Debug.Log("Đã xóa PlatformContainer");
             InstancePlatform();
             Debug.Log("Đã Instance Platform");
+            GameController.Instance.score += 5;
+            GameObject.FindGameObjectWithTag("ScoreTag").GetComponent<Text>().text = GameController.Instance.score.ToString();
         }
     }
 

@@ -43,7 +43,7 @@ public class GameController : MonoBehaviour
 
     public PlatformObjectVM[] listLastPlatform { get; set; } = new PlatformObjectVM[3];
 
-    public float lastXPosition { get; set; }
+    public int score;
 
 
     private void Awake()
@@ -95,6 +95,8 @@ public class GameController : MonoBehaviour
 
     public void ReplayBtn()
     {
+        Instance.score = 0;
+
         Common.Instance.DestroyWithTag("GameoverDialog");
         Common.Instance.DestroyWithTag("Top");
         Common.Instance.DestroyWithTag("PlatformContainer");
