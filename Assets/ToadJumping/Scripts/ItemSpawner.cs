@@ -26,7 +26,7 @@ public class ItemSpawner : MonoBehaviour
         float rate = Random.Range(0, 1f);
         if(rate < HeartRate)
         {
-            Destroy(heartPrefab);
+            Destroy(coinPrefab);
             Destroy(armorPrefab);
 			hasItem = true;
         }
