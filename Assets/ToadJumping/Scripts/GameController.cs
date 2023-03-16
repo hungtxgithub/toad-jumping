@@ -41,6 +41,7 @@ public class GameController : MonoBehaviour
     public GameObject gameoverDialog;
     public GameObject top;
 
+public float lastXPosition;
     public PlatformObjectVM[] listLastPlatform { get; set; } = new PlatformObjectVM[3];
 
     public int score;
