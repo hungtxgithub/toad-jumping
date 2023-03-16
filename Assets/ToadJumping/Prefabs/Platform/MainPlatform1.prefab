@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 239334754317457089}
   - component: {fileID: -4166740560506013385}
   - component: {fileID: -2327756985326856002}
-  - component: {fileID: 1452762509574033258}
+  - component: {fileID: 8354277781037632332}
   - component: {fileID: -8339594145455144441}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MainPlatform1
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
---- !u!114 &1452762509574033258
+--- !u!114 &8354277781037632332
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 239334754317457088}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 936893ca0a137ad49a893b6424c9506b, type: 3}
+  m_Script: {fileID: 11500000, guid: 2b0ec02659f608041acf56c02e113d97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &-8339594145455144441
@@ -163,7 +163,7 @@ MonoBehaviour:
   coinPrefab: {fileID: 335938238040701168}
   heartPrefab: {fileID: 4562622537543583762}
   armorPrefab: {fileID: 9111624164594725520}
-  item: {fileID: 0}
+  hasItem: 0
 --- !u!1001 &3559030033945719985
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -174,6 +174,10 @@ PrefabInstance:
     - target: {fileID: 3876835091315756097, guid: 3a9b6020f8508d94fab549b16e7cd14e, type: 3}
       propertyPath: m_Name
       value: ActiveCoinItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 3876835091315756097, guid: 3a9b6020f8508d94fab549b16e7cd14e, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3876835091315756103, guid: 3a9b6020f8508d94fab549b16e7cd14e, type: 3}
       propertyPath: m_RootOrder
@@ -242,6 +246,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ActiveHeartItem
       objectReference: {fileID: 0}
+    - target: {fileID: 5567365586276446824, guid: 62f6efe6cb033db47af1491164df4603, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8739430861053584282, guid: 62f6efe6cb033db47af1491164df4603, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -308,6 +316,10 @@ PrefabInstance:
     - target: {fileID: 122614554330200942, guid: 222d575a63bd05b4dab0d9cd31137e8c, type: 3}
       propertyPath: m_Name
       value: ActiveArmorItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 122614554330200942, guid: 222d575a63bd05b4dab0d9cd31137e8c, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3870965762302044828, guid: 222d575a63bd05b4dab0d9cd31137e8c, type: 3}
       propertyPath: m_RootOrder
