@@ -1,0 +1,168 @@
+using Assets.ToadJumping.Scripts;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor.U2D.Path;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class ShopController : MonoBehaviour
+{
+    private static ShopController instance;
+
+    [SerializeField]
+    public List<GameObject> items;
+    [SerializeField]
+    public List<GameObject> players;
+
+    public GameObject btnMain;
+
+    [SerializeField]
+    public Animator nextAnimation;
+    public Animator previousAnimation;
+
+    // true: items, false: players
+    private bool optionActive;
+    //xác ??nh mode hi?n t?i hi?n th? gì
+    private bool currentActive;
+
+    private List<GameObject> selectedItems;
+
+    private GameObject selectedGameObject;
+
+    private int index;
+
+    //danh sách l?y t? file khi ng??i dùng mua
+    private List<String> cardPlayer = new List<string>();
+    private List<String> cardItem = new List<string>();
+    private string playerNameActive = "MaskDude";
+
+    public static ShopController Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new GameObject().AddComponent<ShopController>();
+            }
+            return instance;
+        }
+    }
+
+    private void Awake()
+    {
+        instance = this;
+        optionActive = false;
+        currentActive = optionActive;
+        selectedItems = players;
+        index = 0;
+        cardPlayer.Add("MaskDude");
+        cardPlayer.Add("PinkMan");
+        cardItem.Add("ArmorObject Variant");
+        cardItem.Add("CoinObject");
+
+    }
+
+    private void Start()
+    {
+
+    }
+
+    public void openShop()
+    {
+        selectedGameObject = selectedItems[index];
+        ShopController.Instance.SpawnObject(selectedGameObject, new Vector2(0, 0f));
+        checkDisplayBtn();
+    }
+
+    public void closeShop()
+    {
+        Destroy(GameObject.Find(selectedGameObject.name + "(Clone)"));
+    }
+
+    public void setUpShopDisPlay()
+    {
+        if (currentActive != optionActive)
+        {
+            Destroy(GameObject.Find(selectedGameObject.name + "(Clone)"));
+            index = 0;
+            selectedGameObject = selectedItems[index];
+            ShopController.Instance.SpawnObject(selectedGameObject, new Vector2(0, 0f));
+            currentActive = optionActive;
+        }
+    }
+
+    public void displayItem()
+    {
+        optionActive = true;
+        selectedItems = items;
+        setUpShopDisPlay();
+        checkDisplayBtn();
+    }
+
+    public void displayPlayer()
+    {
+        optionActive = false;
+        selectedItems = players;
+        setUpShopDisPlay();
+        checkDisplayBtn();
+    }
+
+    public void nextOption()
+    {
+        Destroy(GameObject.Find(selectedGameObject.name + "(Clone)"));
+        selectedGameObject = null;
+        index = (index + 1) == selectedItems.Count ? 0 : index + 1;
+        selectedGameObject = selectedItems[index];
+        ShopController.Instance.SpawnObject(selectedGameObject, new Vector2(0, 0f));
+        checkDisplayBtn();
+    }
+
+    public void PrevousOption()
+    {
+        Destroy(GameObject.Find(selectedGameObject.name + "(Clone)"));
+        selectedGameObject = null;
+        index = index == 0 ? selectedItems.Count - 1 : index - 1;
+        selectedGameObject = selectedItems[index];
+        ShopController.Instance.SpawnObject(selectedGameObject, new Vector2(0, 0f));
+        checkDisplayBtn();
+    }
+
+    public void checkDisplayBtn()
+    {
+        if (!optionActive)
+        {
+            if(!btnMain.activeInHierarchy) btnMain.SetActive(true);
+
+            if(selectedGameObject.tag != playerNameActive)
+            {
+                btnMain.GetComponent<Button>().interactable = true;
+                btnMain.GetComponentInChildren<Text>().text = cardPlayer.Contains(selectedGameObject.tag) ? "USE" : "BUY";
+            } else
+            {
+                btnMain.GetComponentInChildren<Text>().text = "USED";
+                btnMain.GetComponent<Button>().interactable = false;
+            }
+        }
+        else
+        {
+            btnMain.GetComponent<Button>().interactable = true;
+            btnMain.SetActive(!cardItem.Contains(selectedGameObject.name));
+        }
+    }
+    /**
+     * posion: Z: -17550 
+     * Scale: 817.4957, 978.4969, 195
+     * -329
+     */
+
+    /// <summary>
+    /// Spawn object with Position x, y
+    /// </summary>
+    /// <param name="posX"></param>
+    /// <param name="posY"></param>
+    public void SpawnObject(GameObject obj, Vector2 vector2)
+    {
+        Instantiate(obj, vector2, Quaternion.identity);
+    }
+}

@@ -788,7 +788,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5249615368408432725, guid: 24f9cb4f6c71ef5489040741f33aaef1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: setUpShopDisPlay
+      value: displayItem
       objectReference: {fileID: 0}
     - target: {fileID: 5249615368408432725, guid: 24f9cb4f6c71ef5489040741f33aaef1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -1000,7 +1000,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5249615369352445801, guid: 24f9cb4f6c71ef5489040741f33aaef1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: setUpShopDisPlay
+      value: displayPlayer
       objectReference: {fileID: 0}
     - target: {fileID: 5249615369352445801, guid: 24f9cb4f6c71ef5489040741f33aaef1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -1046,16 +1046,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items:
-  - {fileID: 122614554330200942, guid: 222d575a63bd05b4dab0d9cd31137e8c, type: 3}
-  - {fileID: 3876835091315756097, guid: 3a9b6020f8508d94fab549b16e7cd14e, type: 3}
-  - {fileID: 5567365586276446824, guid: 62f6efe6cb033db47af1491164df4603, type: 3}
+  - {fileID: 122614554330200942, guid: 3962020fdedfe254b9d472d68a0bc6fa, type: 3}
+  - {fileID: 3876835091315756097, guid: a9c1b5f68b9d3274db6980b1a3d6d985, type: 3}
+  - {fileID: 5567365586276446824, guid: efecbe6b466efb64cb7b1fa8d77cab02, type: 3}
   players:
   - {fileID: 7822687510746308311, guid: 1908a18993d964f4087b3915b005d258, type: 3}
   - {fileID: 4401393316000804256, guid: 1d7dded98bdca3f46abefa8f9e985faf, type: 3}
   - {fileID: 6114176219402790865, guid: ae44296e05c841e4fa3f21307d5a501e, type: 3}
   - {fileID: 1770876662201147942, guid: 2951d5da0618d804f8d16e799eb4e52a, type: 3}
+  btnMain: {fileID: 1576810652}
   nextAnimation: {fileID: 8686271871781619316, guid: fad6b7c5ac4b8004db28848a4ac57281, type: 3}
   previousAnimation: {fileID: 7063683829742401788, guid: 12bfb5852deaf0c459c6267b8eb38baa, type: 3}
+--- !u!1 &1576810652 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5249615367966431828, guid: 24f9cb4f6c71ef5489040741f33aaef1, type: 3}
+  m_PrefabInstance: {fileID: 1512574331}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1671216230 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6112069556295159732, guid: 60c98a1abed52c4498556987dc01c153, type: 3}
