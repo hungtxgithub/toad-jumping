@@ -129,7 +129,7 @@ public class CharacterController : MonoBehaviour
     private void OnBecameInvisible()
     {
         GameController.Instance.GameOverUI();
-        Destroy(this);
+        Destroy(gameObject);
     }
 
     public void AddMoreHp(int hp)
