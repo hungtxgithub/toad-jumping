@@ -770,6 +770,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1678587054}
     m_Modifications:
+    - target: {fileID: 5249615367966431830, guid: 24f9cb4f6c71ef5489040741f33aaef1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5249615367966431830, guid: 24f9cb4f6c71ef5489040741f33aaef1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5249615367966431830, guid: 24f9cb4f6c71ef5489040741f33aaef1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1517347981}
+    - target: {fileID: 5249615367966431830, guid: 24f9cb4f6c71ef5489040741f33aaef1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5249615367966431830, guid: 24f9cb4f6c71ef5489040741f33aaef1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: clickMainBtn
+      objectReference: {fileID: 0}
+    - target: {fileID: 5249615367966431830, guid: 24f9cb4f6c71ef5489040741f33aaef1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ShopController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5249615367966431830, guid: 24f9cb4f6c71ef5489040741f33aaef1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5249615368408432725, guid: 24f9cb4f6c71ef5489040741f33aaef1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

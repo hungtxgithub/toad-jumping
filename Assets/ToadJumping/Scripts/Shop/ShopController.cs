@@ -64,7 +64,7 @@ public class ShopController : MonoBehaviour
         cardPlayer.Add("NinjaFrog");
         cardItem.Add("ArmorObject Variant");
         cardItem.Add("CoinObject");
-        totalGold = 1500;
+        totalGold = 2000;
 
     }
 
@@ -140,22 +140,24 @@ public class ShopController : MonoBehaviour
         //set display text and name obj
         GameObject.Find("TextNameObj").GetComponent<Text>().text = selectedGameObject.tag;
         GameObject.Find("TextCost").GetComponent<Text>().text = currentObjCost.Length > 0 ? currentObjCost[0].Cost.ToString() : "";
-        
+
         if (!optionActive)
         {
-            if(!btnMain.activeInHierarchy) btnMain.SetActive(true);
+            if (!btnMain.activeInHierarchy) btnMain.SetActive(true);
 
-            if(selectedGameObject.tag != playerNameActive)
+            if (selectedGameObject.tag != playerNameActive)
             {
                 btnMain.GetComponentInChildren<Text>().text = cardPlayer.Contains(selectedGameObject.tag) ? "USE" : "BUY";
                 if (currentObjCost.Length == 0 || (currentObjCost[0].Cost <= totalGold || cardPlayer.Contains(selectedGameObject.tag)))
                 {
                     btnMain.GetComponent<Button>().interactable = true;
-                } else
+                }
+                else
                 {
                     btnMain.GetComponent<Button>().interactable = false;
                 }
-            } else
+            }
+            else
             {
                 btnMain.GetComponentInChildren<Text>().text = "USED";
                 btnMain.GetComponent<Button>().interactable = false;
@@ -186,5 +188,45 @@ public class ShopController : MonoBehaviour
     public void setTextUserGold()
     {
         GameObject.Find("TextUserGold").GetComponent<Text>().text = totalGold.ToString();
+    }
+
+    public void updateUserGold(int num, bool typeCheck)
+    {
+        // true +, false -
+        if (num != 0)
+        {
+            if (typeCheck)
+            {
+                totalGold += num;
+            }
+            else
+            {
+                totalGold -= num;
+            }
+        }
+    }
+
+    public void clickMainBtn()
+    {
+        var TextBtn = btnMain.GetComponentInChildren<Text>().text;
+        var currentObjCost = selectedGameObject.GetComponents<ShopObj>();
+        int currentCost = currentObjCost.Length > 0 ? currentObjCost[0].Cost : 0;
+        switch (TextBtn)
+        {
+            case "BUY":
+                updateUserGold(currentCost, false);
+                cardPlayer.Add(selectedGameObject.tag);
+                setTextUserGold();
+                checkDisplayBtn();
+                break;
+            
+            case "USE":
+                playerNameActive = selectedGameObject.tag;
+                checkDisplayBtn();
+                break;
+            
+            default: 
+                break;
+        }
     }
 }
