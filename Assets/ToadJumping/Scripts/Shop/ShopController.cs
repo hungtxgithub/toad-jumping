@@ -35,6 +35,8 @@ public class ShopController : MonoBehaviour
     //danh sách l?y t? file khi ng??i dùng mua
     private List<String> cardPlayer = new List<string>();
     private List<String> cardItem = new List<string>();
+    //vàng ??c t? file ra
+    private int totalGold { get; set; }
     private string playerNameActive = "MaskDude";
 
     public static ShopController Instance
@@ -56,10 +58,13 @@ public class ShopController : MonoBehaviour
         currentActive = optionActive;
         selectedItems = players;
         index = 0;
+
+        //data test
         cardPlayer.Add("MaskDude");
-        cardPlayer.Add("PinkMan");
+        cardPlayer.Add("NinjaFrog");
         cardItem.Add("ArmorObject Variant");
         cardItem.Add("CoinObject");
+        totalGold = 1500;
 
     }
 
@@ -72,6 +77,7 @@ public class ShopController : MonoBehaviour
     {
         selectedGameObject = selectedItems[index];
         ShopController.Instance.SpawnObject(selectedGameObject, new Vector2(0, 0f));
+        setTextUserGold();
         checkDisplayBtn();
     }
 
@@ -130,14 +136,25 @@ public class ShopController : MonoBehaviour
 
     public void checkDisplayBtn()
     {
+        var currentObjCost = selectedGameObject.GetComponents<ShopObj>();
+        //set display text and name obj
+        GameObject.Find("TextNameObj").GetComponent<Text>().text = selectedGameObject.tag;
+        GameObject.Find("TextCost").GetComponent<Text>().text = currentObjCost.Length > 0 ? currentObjCost[0].Cost.ToString() : "";
+        
         if (!optionActive)
         {
             if(!btnMain.activeInHierarchy) btnMain.SetActive(true);
 
             if(selectedGameObject.tag != playerNameActive)
             {
-                btnMain.GetComponent<Button>().interactable = true;
                 btnMain.GetComponentInChildren<Text>().text = cardPlayer.Contains(selectedGameObject.tag) ? "USE" : "BUY";
+                if (currentObjCost.Length == 0 || (currentObjCost[0].Cost <= totalGold || cardPlayer.Contains(selectedGameObject.tag)))
+                {
+                    btnMain.GetComponent<Button>().interactable = true;
+                } else
+                {
+                    btnMain.GetComponent<Button>().interactable = false;
+                }
             } else
             {
                 btnMain.GetComponentInChildren<Text>().text = "USED";
@@ -164,5 +181,10 @@ public class ShopController : MonoBehaviour
     public void SpawnObject(GameObject obj, Vector2 vector2)
     {
         Instantiate(obj, vector2, Quaternion.identity);
+    }
+
+    public void setTextUserGold()
+    {
+        GameObject.Find("TextUserGold").GetComponent<Text>().text = totalGold.ToString();
     }
 }

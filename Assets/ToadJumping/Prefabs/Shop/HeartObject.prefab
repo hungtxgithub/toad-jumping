@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6608888272667994994}
   - component: {fileID: -4963616953921504293}
   - component: {fileID: 1376410479238673538}
+  - component: {fileID: 9207205923583145791}
   m_Layer: 0
   m_Name: HeartObject
   m_TagString: CanBePickedUp
@@ -115,3 +116,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: e971e605596074547b6fad4e35ec3c77, type: 2}
+--- !u!114 &9207205923583145791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5567365586276446824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e958bee863514784aa3a36b0df9bbb53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cost: 200

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1628632178012213125}
   - component: {fileID: 6524567279386254207}
+  - component: {fileID: 706398447851643083}
   m_Layer: 0
   m_Name: MaskDude
   m_TagString: MaskDude
@@ -84,3 +85,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &706398447851643083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7822687510746308311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e958bee863514784aa3a36b0df9bbb53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cost: 1500
