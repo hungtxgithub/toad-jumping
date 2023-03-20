@@ -8,7 +8,7 @@ public class PlatformContainerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.down * 2 * Time.deltaTime);
+        transform.Translate(Vector2.down * 1 * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -16,9 +16,7 @@ public class PlatformContainerScript : MonoBehaviour
         if (collision.CompareTag("DeathZone"))
         {
             Destroy(gameObject);
-            Debug.Log("Đã xóa PlatformContainer");
             InstancePlatform();
-            Debug.Log("Đã Instance Platform");
             GameController.Instance.score += 5;
             GameObject.FindGameObjectWithTag("ScoreTag").GetComponent<Text>().text = GameController.Instance.score.ToString();
         }

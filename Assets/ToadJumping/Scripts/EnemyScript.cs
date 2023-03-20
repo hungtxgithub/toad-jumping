@@ -9,6 +9,8 @@ namespace Assets.ToadJumping.Scripts
 {
     public class EnemyScript : MonoBehaviour
     {
+        public IEnumerator coroutine { get; set; }
+
         private static EnemyScript instance;
         public static EnemyScript Instance
         {
@@ -47,9 +49,14 @@ namespace Assets.ToadJumping.Scripts
                 new GameObjectRateVM(){GameObject = gameController.ghostEnemy, Rate = 2},
                 new GameObjectRateVM(){GameObject = gameController.skullEnemy, Rate = 1}
             };
-            StartCoroutine(SpawnEnemyAfterSeconds(listGameObjecRate, 10, 15));
+            coroutine = SpawnEnemyAfterSeconds(listGameObjecRate, 10, 15);
+            StartCoroutine(coroutine);
         }
 
+        public void StopRandomEnemy()
+        {
+            StopCoroutine(coroutine);
+        }
 
         /// <summary>
         /// Spawn enemy After n Seconds

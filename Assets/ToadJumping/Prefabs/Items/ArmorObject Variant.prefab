@@ -15,6 +15,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ArmorObject Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5567365586276446824, guid: 62f6efe6cb033db47af1491164df4603, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6608888272667994994, guid: 62f6efe6cb033db47af1491164df4603, type: 3}
       propertyPath: m_Sprite
       value: 

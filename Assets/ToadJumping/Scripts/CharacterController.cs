@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Net.Http.Headers;
 using UnityEngine;
 
@@ -38,6 +40,9 @@ public class CharacterController : MonoBehaviour
     public float jumpforce = 0f;
     public float jumpHigh = 5f;
     public int animateState = 0;
+
+    DateTime time;
+
     private void Awake()
     {
         instance = this;
@@ -52,76 +57,54 @@ public class CharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // gameObject.transform.position.y 
-        // moveInput = Input.GetAxis("Horizontal");
-        // rbd2d.velocity = new Vector2(moveInput * speed, rbd2d.velocity.y);
-       Animator  mainAnimator=   GetComponent<Animator>();
+       
+
+    }
+
+    private void FixedUpdate()
+    {
+        Animator mainAnimator = GetComponent<Animator>();
 
         groundIsTouching = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
-
-        //if (groundIsTouching)
+        //if (!groundIsTouching)
         //{
-
-        if (!groundIsTouching && jumpforce==6f)
-        {
-             
-
-             if (rbd2d.transform.position.x<=-2 ||rbd2d.transform.position.x>=2){
-                 Debug.Log(" dung: " + rbd2d.transform.position.x);
-                jumpforce =0f;
-                rbd2d.velocity = new Vector2( 0f, rbd2d.velocity.y); 
-             }
-             if(rbd2d.transform.position.x>=-0.1f&&rbd2d.transform.position.x<=0.1f){
-               
-                 Debug.Log(" dung: " + rbd2d.transform.position.x);
-                jumpforce =0f;
-                rbd2d.velocity = new Vector2( 0f, rbd2d.velocity.y); 
-             }
-        }
-
-        // if (groundIsTouching)
-        // {
-        //    GetComponent<Rigidbody2D>().gravityScale = 0;
-        //}
-        //else
-        //{
-        //    GetComponent<Rigidbody2D>().gravityScale = 1;
+        //    if (rbd2d.transform.position.x <= -2 || rbd2d.transform.position.x >= 2)
+        //    {
+        //        rbd2d.velocity = new Vector2(0f, rbd2d.velocity.y);
+        //    }
+        //    if (rbd2d.transform.position.x >= -0.1f && rbd2d.transform.position.x <= 0.1f)
+        //    {
+        //        rbd2d.velocity = new Vector2(0f, rbd2d.velocity.y);
+        //    }
         //}
 
-        if (Input.GetButtonDown("Jump") && groundIsTouching)
-        // }
-         if (groundIsTouching && jumpforce==6f)
+
+        if (groundIsTouching)
         {
-            mainAnimator.SetTrigger("stayTr");
-
-        armor.SetActive(hasArmor);
-        }
-        
-           
-        if (  groundIsTouching)
-        {
-          jumpforce = 6f;
-           if(Input.GetKey(KeyCode.LeftArrow)){
-                rbd2d.velocity = new Vector2( -jumpforce, jumpSpeed); //for left jumping
-                
-                mainAnimator.SetTrigger("jumpTr");
-                GetComponent<SpriteRenderer>().flipX = true;
-
+            if (Input.GetKey(KeyCode.LeftArrow) && (DateTime.Now - time).Duration().TotalSeconds  >= 0.35 && gameObject.transform.position.x >= -1 )
+            {
+                rbd2d.velocity = new Vector2(-4.5f, 14f);
+                time = DateTime.Now;
             }
-            if(Input.GetKey(KeyCode.RightArrow)){
-                rbd2d.velocity = new Vector2( jumpforce, jumpSpeed); //for right jumping
-                mainAnimator.SetTrigger("jumpTr");
-                GetComponent<SpriteRenderer>().flipX = false;
-
-
+            else if (Input.GetKey(KeyCode.RightArrow) && (DateTime.Now - time).Duration().TotalSeconds >= 0.35 && gameObject.transform.position.x <= 1)
+            {
+                rbd2d.velocity = new Vector2(4.5f, 14f);
+                time = DateTime.Now;
             }
-            if(Input.GetButtonDown("Jump")){
-            rbd2d.velocity = new Vector2(rbd2d.velocity.x, jumpSpeed);
+            else if (Input.GetKey(KeyCode.UpArrow) && (DateTime.Now - time).Duration().TotalSeconds >= 0.35)
+            {
+                rbd2d.velocity = new Vector2(0, 12f);
+                time = DateTime.Now;
             }
         }
-        
     }
+
+    void Jump()
+    {
+        rbd2d.velocity = new Vector2(rbd2d.velocity.x, jumpforce);
+    }
+
 
     /// <summary>
     /// Destroy character when falling
@@ -132,25 +115,26 @@ public class CharacterController : MonoBehaviour
         Destroy(gameObject);
     }
 
+
     public void AddMoreHp(int hp)
     {
         int newHp = this.hp + hp;
-        if(newHp <= MaxHp)
+        if (newHp <= MaxHp)
         {
             this.hp = newHp;
         }
     }
 
-	void OnTriggerEnter2D(Collider2D collision)
-	{
+    void OnTriggerEnter2D(Collider2D collision)
+    {
         PickUpItems(collision);
         CollideWithEnemy(collision);
-	}
+    }
 
     void CollideWithEnemy(Collider2D collision)
     {
-		if (collision.gameObject.CompareTag("Enemy"))
-		{
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
             if (!hasArmor)
             {
                 hp--;
@@ -158,33 +142,36 @@ public class CharacterController : MonoBehaviour
 
             // Destory enemy after collide
             Destroy(collision.gameObject);
-			if (hp <= 0)
-			{
-				GameController.Instance.GameOverUI();
-				Destroy(gameObject);
-			}
+            if (hp <= 0)
+            {
+                GameController.Instance.GameOverUI();
+                Destroy(gameObject);
+            }
 
             // Remove armor after collide
             hasArmor = false;
-		}
-	}
+        }
+    }
 
     void PickUpItems(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("CanBePickedUp"))
         {
-            Item hitObject  = collision.gameObject.GetComponent<Consumable>().item;
+            Item hitObject = collision.gameObject.GetComponent<Consumable>().item;
             if (hitObject != null)
             {
-				print("Hit: " + hitObject.objectName);
+                print("Hit: " + hitObject.objectName);
 
                 switch (hitObject.itemType)
                 {
-                    case Item.ItemType.COIN: ApplyCoinItemEffect(hitObject);
+                    case Item.ItemType.COIN:
+                        ApplyCoinItemEffect(hitObject);
                         break;
-                    case Item.ItemType.HEALTH: ApplyHealthItemEffect();
+                    case Item.ItemType.HEALTH:
+                        ApplyHealthItemEffect();
                         break;
-                    case Item.ItemType.ARMOR: ApplyArmorItemEffect();
+                    case Item.ItemType.ARMOR:
+                        ApplyArmorItemEffect();
                         break;
                     default:
                         break;
@@ -192,7 +179,7 @@ public class CharacterController : MonoBehaviour
 
                 // collision.gameObject.SetActive(false);
                 Destroy(collision.gameObject);
-			}
+            }
         }
     }
 
@@ -201,13 +188,13 @@ public class CharacterController : MonoBehaviour
         item.quantity++;
     }
 
-	void ApplyHealthItemEffect()
-	{
+    void ApplyHealthItemEffect()
+    {
         AddMoreHp(1);
-	}
+    }
 
-	void ApplyArmorItemEffect()
-	{
+    void ApplyArmorItemEffect()
+    {
         hasArmor = true;
-	}
+    }
 }

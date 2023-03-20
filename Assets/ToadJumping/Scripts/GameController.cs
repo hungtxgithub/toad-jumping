@@ -41,7 +41,7 @@ public class GameController : MonoBehaviour
     public GameObject gameoverDialog;
     public GameObject top;
 
-public float lastXPosition;
+    public float lastXPosition;
     public PlatformObjectVM[] listLastPlatform { get; set; } = new PlatformObjectVM[3];
 
     public int score;
@@ -71,7 +71,7 @@ public float lastXPosition;
         //Random enemy function
         EnemyScript.Instance.RandomEnemy();
         Common.Instance.SpawnObject(mainCharacter, new Vector2(0, 0.5f));
-        Platform.Instance.RandomStartPlatform(GetListPlatform());
+        PlatformScript.Instance.RandomStartPlatform(GetListPlatform());
     }
 
     public void GameOverUI()
@@ -98,6 +98,8 @@ public float lastXPosition;
     {
         Instance.score = 0;
 
+        //EnemyScript.Instance.StopRandomEnemy();
+
         Common.Instance.DestroyWithTag("GameoverDialog");
         Common.Instance.DestroyWithTag("Top");
         Common.Instance.DestroyWithTag("PlatformContainer");
@@ -105,7 +107,7 @@ public float lastXPosition;
         Common.Instance.DestroyWithTag("Warning");
         EnemyScript.Instance.RandomEnemy();
         Common.Instance.SpawnObject(mainCharacter, new Vector2(0, 0.5f));
-        Platform.Instance.RandomStartPlatform(GetListPlatform());
+        PlatformScript.Instance.RandomStartPlatform(GetListPlatform());
         Common.Instance.SpawnObject(top, new Vector2(0f, 0f));
 
         Time.timeScale = 1;
