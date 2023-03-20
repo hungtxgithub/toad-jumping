@@ -21,7 +21,7 @@ public class PlatformScript : MonoBehaviour
         }
     }
 
-	private void Awake()
+    private void Awake()
     {
         instance = this;
     }

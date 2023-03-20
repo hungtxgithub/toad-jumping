@@ -57,7 +57,7 @@ public class CharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+
 
     }
 
@@ -82,7 +82,7 @@ public class CharacterController : MonoBehaviour
 
         if (groundIsTouching)
         {
-            if (Input.GetKey(KeyCode.LeftArrow) && (DateTime.Now - time).Duration().TotalSeconds  >= 0.35 && gameObject.transform.position.x >= -1 )
+            if (Input.GetKey(KeyCode.LeftArrow) && (DateTime.Now - time).Duration().TotalSeconds >= 0.35 && gameObject.transform.position.x >= -1)
             {
                 rbd2d.velocity = new Vector2(-4.5f, 14f);
                 time = DateTime.Now;

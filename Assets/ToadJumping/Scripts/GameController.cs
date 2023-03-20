@@ -4,10 +4,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
     private static GameController instance;
+    
+    private bool gameIsActive;
 
     public static GameController Instance
     {
@@ -21,10 +24,12 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public GameObject title;
-    public GameObject character;
-    public GameObject goBtnWrap;
-    public GameObject platform;
+    //public GameObject title;
+    //public GameObject character;
+    //public GameObject goBtnWrap;
+    //public GameObject platform;
+    public GameObject menu;
+
 
     public GameObject batEnemy;
     public GameObject beeEnemy;
@@ -40,8 +45,10 @@ public class GameController : MonoBehaviour
 
     public GameObject gameoverDialog;
     public GameObject top;
+    public GameObject ranking;
+    public GameObject shopping;
 
-    public float lastXPosition;
+public float lastXPosition;
     public PlatformObjectVM[] listLastPlatform { get; set; } = new PlatformObjectVM[3];
 
     public int score;
@@ -52,6 +59,12 @@ public class GameController : MonoBehaviour
         instance = this;
     }
 
+    void Start()
+    {
+        gameIsActive = false;
+        //GameObject.FindWithTag("BtnPlayTag").GetComponent<Button>().onClick.AddListener(() => GoBtnClick());
+
+    }
 
     public List<PlatformObjectVM> GetListPlatform()
     {
@@ -67,6 +80,7 @@ public class GameController : MonoBehaviour
     /// </summary>
     public void GoBtnClick()
     {
+        gameIsActive = true;
         GoBtnUI();
         //Random enemy function
         EnemyScript.Instance.RandomEnemy();
@@ -76,16 +90,22 @@ public class GameController : MonoBehaviour
 
     public void GameOverUI()
     {
-        Common.Instance.SpawnObject(gameoverDialog, new Vector2(0f, 0f));
+        //Common.Instance.SpawnObject(gameoverDialog, new Vector2(0f, 0f));
+        ranking.SetActive(true);
+        GameObject.FindWithTag("BtnPlayTag").GetComponentInChildren<Text>().text = "Replay";
+        GameObject.FindWithTag("BtnPlayTag").GetComponent<Button>().onClick.RemoveListener(GoBtnClick);
+        GameObject.FindWithTag("BtnPlayTag").GetComponent<Button>().onClick.AddListener(() => ReplayBtn());
         Time.timeScale = 0;
     }
 
     public void GoBtnUI()
     {
-        title.SetActive(false);
-        character.SetActive(false);
-        platform.SetActive(false);
-        goBtnWrap.SetActive(false);
+        //title.SetActive(false);
+        //character.SetActive(false);
+        //platform.SetActive(false);
+        //goBtnWrap.SetActive(false);
+        menu.SetActive(false);
+        ranking.SetActive(false);
         Common.Instance.SpawnObject(top, new Vector2(0f, 0f));
     }
 
@@ -98,18 +118,40 @@ public class GameController : MonoBehaviour
     {
         Instance.score = 0;
 
-        //EnemyScript.Instance.StopRandomEnemy();
-
-        Common.Instance.DestroyWithTag("GameoverDialog");
+        //Common.Instance.DestroyWithTag("GameoverDialog");
+        ranking.SetActive(false);
         Common.Instance.DestroyWithTag("Top");
         Common.Instance.DestroyWithTag("PlatformContainer");
         Common.Instance.DestroyWithTag("Enemy");
         Common.Instance.DestroyWithTag("Warning");
+        Common.Instance.DestroyWithTag("MainCharacter");
         EnemyScript.Instance.RandomEnemy();
         Common.Instance.SpawnObject(mainCharacter, new Vector2(0, 0.5f));
         PlatformScript.Instance.RandomStartPlatform(GetListPlatform());
         Common.Instance.SpawnObject(top, new Vector2(0f, 0f));
 
         Time.timeScale = 1;
+    }
+
+    public void DisPlayRank()
+    {
+        ranking.SetActive(!ranking.activeInHierarchy);
+        if (gameIsActive && !ranking.activeInHierarchy)
+        {
+            menu.SetActive(true);
+        }
+    }
+
+    public void DisPlayShop()
+    {
+        shopping.SetActive(!shopping.activeInHierarchy);
+        if (shopping.activeInHierarchy)
+        {
+            ShopController.Instance.openShop();
+        }
+        else
+        {
+            ShopController.Instance.closeShop();
+        }
     }
 }
