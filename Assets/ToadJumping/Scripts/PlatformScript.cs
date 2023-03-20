@@ -21,7 +21,7 @@ public class PlatformScript : MonoBehaviour
         }
     }
 
-	private void Awake()
+    private void Awake()
     {
         instance = this;
     }
@@ -78,17 +78,11 @@ public class PlatformScript : MonoBehaviour
         int index = Random.Range(0, 2);
         if (index == 1)
         {
-            listPlatformInRow[0] = listPlatform.Where(x => x.IsNormal == true).SingleOrDefault();
-            for (int k = 1; k < numberPlatformInRow; k++)
-                listPlatformInRow[k] = listPlatform[Random.Range(0, listPlatform.Count)];
+            listPlatformInRow = HandleRow0(listPlatform, numberPlatformInRow);
         }
         else
         {
-            listPlatformInRow[1] = listPlatform.Where(x => x.IsNormal == true).SingleOrDefault();
-            if (numberPlatformInRow == 2)
-                listPlatformInRow[0] = listPlatform[Random.Range(0, listPlatform.Count)];
-            else if (numberPlatformInRow == 3)
-                listPlatformInRow[2] = listPlatform[Random.Range(0, listPlatform.Count)];
+            listPlatformInRow = HandleRow1(listPlatform, numberPlatformInRow);
         }
         return listPlatformInRow;
     }
@@ -118,11 +112,11 @@ public class PlatformScript : MonoBehaviour
         int index = Random.Range(0, 2);
         if (index == 1)
         {
-            listPlatformInRow = HandleRow0(listPlatform, numberPlatformInRow);
+            listPlatformInRow = HandleRow1(listPlatform, numberPlatformInRow);
         }
         else
         {
-            listPlatformInRow = HandleRow1(listPlatform, numberPlatformInRow);
+            listPlatformInRow = HandleRow2(listPlatform, numberPlatformInRow);
         }
         return listPlatformInRow;
     }
@@ -151,7 +145,7 @@ public class PlatformScript : MonoBehaviour
     {
         var listPlatformInRow = new PlatformObjectVM[3];
         listPlatformInRow[2] = listPlatform.Where(x => x.IsNormal == true).SingleOrDefault();
-        for (int k = 0; k < numberPlatformInRow - 1; k++)
+        for (int k = numberPlatformInRow - 2; k >= 0; k--)
             listPlatformInRow[k] = listPlatform[Random.Range(0, listPlatform.Count)];
         return listPlatformInRow;
     }

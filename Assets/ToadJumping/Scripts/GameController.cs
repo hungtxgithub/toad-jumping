@@ -62,7 +62,7 @@ public float lastXPosition;
     void Start()
     {
         gameIsActive = false;
-        GameObject.FindWithTag("BtnPlayTag").GetComponent<Button>().onClick.AddListener(() => GoBtnClick());
+        //GameObject.FindWithTag("BtnPlayTag").GetComponent<Button>().onClick.AddListener(() => GoBtnClick());
 
     }
 
@@ -85,7 +85,7 @@ public float lastXPosition;
         //Random enemy function
         EnemyScript.Instance.RandomEnemy();
         Common.Instance.SpawnObject(mainCharacter, new Vector2(0, 0.5f));
-        Platform.Instance.RandomStartPlatform(GetListPlatform());
+        PlatformScript.Instance.RandomStartPlatform(GetListPlatform());
     }
 
     public void GameOverUI()
@@ -124,9 +124,10 @@ public float lastXPosition;
         Common.Instance.DestroyWithTag("PlatformContainer");
         Common.Instance.DestroyWithTag("Enemy");
         Common.Instance.DestroyWithTag("Warning");
+        Common.Instance.DestroyWithTag("MainCharacter");
         EnemyScript.Instance.RandomEnemy();
         Common.Instance.SpawnObject(mainCharacter, new Vector2(0, 0.5f));
-        Platform.Instance.RandomStartPlatform(GetListPlatform());
+        PlatformScript.Instance.RandomStartPlatform(GetListPlatform());
         Common.Instance.SpawnObject(top, new Vector2(0f, 0f));
 
         Time.timeScale = 1;
