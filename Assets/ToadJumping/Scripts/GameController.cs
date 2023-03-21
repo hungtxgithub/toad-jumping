@@ -39,6 +39,10 @@ public class GameController : MonoBehaviour
     public GameObject skullEnemy;
     public GameObject warning;
     public GameObject mainCharacter;
+    public GameObject maskCharacter;
+    public GameObject virtualCharacter;
+    public GameObject pinkCharacter;
+
 
     public GameObject platformContainer;
     public GameObject mainPlatform1;
@@ -87,7 +91,23 @@ public float lastXPosition;
         GoBtnUI();
         //Random enemy function
         EnemyScript.Instance.RandomEnemy();
-        Common.Instance.SpawnObject(mainCharacter, new Vector2(0, 0.5f));
+        string currentSkin = ShopController.Instance.getCurrentPlayer();
+              Debug.Log("currentSkin: " + currentSkin);
+        switch (currentSkin)   {
+            case "NinjaFrog":
+                Common.Instance.SpawnObject(mainCharacter, new Vector2(0, 0.5f));
+                break;
+            case "MaskDude":
+                Common.Instance.SpawnObject(maskCharacter, new Vector2(0, 0.5f));
+                break;
+            case "PinkMan":
+                 Common.Instance.SpawnObject(pinkCharacter, new Vector2(0, 0.5f));
+                break;
+            case "VirtualGuy":
+                 Common.Instance.SpawnObject(virtualCharacter, new Vector2(0, 0.5f));
+                break;
+        }
+      
         PlatformScript.Instance.RandomStartPlatform(GetListPlatform());
     }
 
