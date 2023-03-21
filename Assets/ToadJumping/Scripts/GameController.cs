@@ -54,6 +54,7 @@ public float lastXPosition;
     public PlatformObjectVM[] listLastPlatform { get; set; } = new PlatformObjectVM[3];
 
     public int score;
+    public int bestScore;
 
 
     private void Awake()
@@ -66,6 +67,7 @@ public float lastXPosition;
         gameIsActive = false;
         //GameObject.FindWithTag("BtnPlayTag").GetComponent<Button>().onClick.AddListener(() => GoBtnClick());
         menu.GetComponent<Animator>().SetBool("checkActive", false);
+        bestScore = SaveFile.Instance.getBestScore();
 
     }
 
@@ -95,6 +97,7 @@ public float lastXPosition;
     {
         //Common.Instance.SpawnObject(gameoverDialog, new Vector2(0f, 0f));
         ranking.SetActive(true);
+        RankController.Instance.getTotalScore(score);
         GameObject.FindWithTag("BtnPlayTag").GetComponentInChildren<Text>().text = "Replay";
         GameObject.FindWithTag("BtnPlayTag").GetComponent<Button>().onClick.RemoveListener(GoBtnClick);
         GameObject.FindWithTag("BtnPlayTag").GetComponent<Button>().onClick.AddListener(() => ReplayBtn());
@@ -142,19 +145,22 @@ public float lastXPosition;
         ranking.SetActive(!ranking.activeInHierarchy);
         if (gameIsActive && !ranking.activeInHierarchy)
         {
-            GameObject[] gameObjectsScreen = FindObjectsOfType<GameObject>();
+            //GameObject[] gameObjectsScreen = FindObjectsOfType<GameObject>();
 
-            for (var i = 0; i < gameObjectsScreen.Length; i++)
-            {
-                if (gameObjectsScreen[i].name.EndsWith("(Clone)") || gameObjectsScreen[i].name == "New Game Object")
-                {
-                    Destroy(gameObjectsScreen[i]);
-                }
-            }
+            //for (var i = 0; i < gameObjectsScreen.Length; i++)
+            //{
+            //    if (gameObjectsScreen[i].name.EndsWith("(Clone)") || gameObjectsScreen[i].name == "New Game Object")
+            //    {
+            //        Destroy(gameObjectsScreen[i]);
+            //    }
+            //}
 
-            BG.SetActive(false);
-            menu.SetActive(true);
-            //menu.GetComponent<Animator>().SetBool("checkActive", true);
+            //BG.SetActive(false);
+            //menu.SetActive(true);
+            ////menu.GetComponent<Animator>().SetBool("checkActive", true);
+            ///
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
         }
     }
 
