@@ -41,9 +41,13 @@ public class CharacterController : MonoBehaviour
 
     public float jumpforce = 0f;
     public float jumpHigh = 5f;
-    public int animateState = 0;
+    public int animateState = 0;    
+    public AudioSource jumpSound;
+    public AudioSource deathSound;
+    public AudioSource collectSound;
+    public AudioSource mainSound;
 
-    DateTime time;
+       DateTime time;
 
     private void Awake()
     {
@@ -53,10 +57,12 @@ public class CharacterController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        mainSound.Play();
         rbd2d = GetComponent<Rigidbody2D>();
         flyItemTimer = gameObject.AddComponent<Timer>();
         armor.active = false;
         flyItemTimer.Duration = 3;
+
     }
 
     // Update is called once per frame
@@ -92,16 +98,19 @@ public class CharacterController : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.LeftArrow) && (DateTime.Now - time).Duration().TotalSeconds >= 0.35 && gameObject.transform.position.x >= -1)
             {
+                jumpSound.Play();
                 rbd2d.velocity = new Vector2(-4.5f, 14f);
                 time = DateTime.Now;
             }
             else if (Input.GetKey(KeyCode.RightArrow) && (DateTime.Now - time).Duration().TotalSeconds >= 0.35 && gameObject.transform.position.x <= 1)
             {
+                jumpSound.Play();
                 rbd2d.velocity = new Vector2(4.5f, 14f);
                 time = DateTime.Now;
             }
             else if (Input.GetKey(KeyCode.UpArrow) && (DateTime.Now - time).Duration().TotalSeconds >= 0.35)
             {
+                jumpSound.Play();
                 rbd2d.velocity = new Vector2(0, 12f);
                 time = DateTime.Now;
             }
@@ -119,7 +128,11 @@ public class CharacterController : MonoBehaviour
     /// </summary>
     private void OnBecameInvisible()
     {
+        mainSound.Stop();
+        deathSound.Play();
+
         GameController.Instance.GameOverUI();
+
         Destroy(gameObject);
     }
 
@@ -152,6 +165,8 @@ public class CharacterController : MonoBehaviour
             Destroy(collision.gameObject);
             if (hp <= 0)
             {
+                mainSound.Stop();
+                deathSound.Play();
                 GameController.Instance.GameOverUI();
                 Destroy(gameObject);
             }
@@ -169,6 +184,7 @@ public class CharacterController : MonoBehaviour
             Item hitObject = collision.gameObject.GetComponent<Consumable>().item;
             if (hitObject != null)
             {
+                collectSound.Play();
                 print("Hit: " + hitObject.objectName);
 
                 switch (hitObject.itemType)
