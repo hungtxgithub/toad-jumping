@@ -54,6 +54,9 @@ MonoBehaviour:
   skullEnemy: {fileID: 5710394214854542636, guid: 0ccb228a3c7f6b742b0e15b700313d35, type: 3}
   warning: {fileID: 5739483762430212539, guid: ae18f2bf199019a46a3c83fb1b748e3f, type: 3}
   mainCharacter: {fileID: 5761597978777637047, guid: 7635676244057e54bb8f4acb9805f402, type: 3}
+  maskCharacter: {fileID: 0}
+  virtualCharacter: {fileID: 0}
+  pinkCharacter: {fileID: 0}
   platformContainer: {fileID: 3264967934346859044, guid: ef1d87bf7424d4c45bdb6b090c9b58c1, type: 3}
   mainPlatform1: {fileID: 239334754317457088, guid: 79e0749457fda7848bff0295e6339708, type: 3}
   mainPlatform2: {fileID: 134282426228059073, guid: 0057f2734102b3d41b72eeb183eec9b4, type: 3}
@@ -80,9 +83,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items:
-  - {fileID: 122614554330200942, guid: 3962020fdedfe254b9d472d68a0bc6fa, type: 3}
-  - {fileID: 3876835091315756097, guid: a9c1b5f68b9d3274db6980b1a3d6d985, type: 3}
-  - {fileID: 5567365586276446824, guid: efecbe6b466efb64cb7b1fa8d77cab02, type: 3}
+  - {fileID: 4909711697432123897, guid: 15a31452544e03a4ebfddd29f34f538c, type: 3}
   players:
   - {fileID: 7822687510746308311, guid: 1908a18993d964f4087b3915b005d258, type: 3}
   - {fileID: 4401393316000804256, guid: 1d7dded98bdca3f46abefa8f9e985faf, type: 3}
