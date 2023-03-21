@@ -46,16 +46,16 @@ public class RankController : MonoBehaviour
     {
         bestScore.text = intBestScore.ToString();
     }
-    
+
     public void getTotalScore(int score)
     {
-        if(score > intBestScore)
+        if (score > intBestScore)
         {
             intBestScore = score;
             getBestScore();
             //SaveFile.Instance.setBestScore(score);
         }
-       
+
         totalScore.text = score.ToString();
     }
 
