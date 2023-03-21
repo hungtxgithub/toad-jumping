@@ -142,15 +142,15 @@ public float lastXPosition;
         ranking.SetActive(!ranking.activeInHierarchy);
         if (gameIsActive && !ranking.activeInHierarchy)
         {
-            //GameObject[] gameObjectsScreen = FindObjectsOfType<GameObject>();
+            GameObject[] gameObjectsScreen = FindObjectsOfType<GameObject>();
 
-            //for (var i = 0; i < gameObjectsScreen.Length; i++)
-            //{
-            //    if (gameObjectsScreen[i].name.EndsWith("(Clone)") || gameObjectsScreen[i].name == "New Game Object")
-            //    {
-            //        Destroy(gameObjectsScreen[i]);
-            //    }
-            //}
+            for (var i = 0; i < gameObjectsScreen.Length; i++)
+            {
+                if (gameObjectsScreen[i].name.EndsWith("(Clone)") || gameObjectsScreen[i].name == "New Game Object")
+                {
+                    Destroy(gameObjectsScreen[i]);
+                }
+            }
 
             BG.SetActive(false);
             menu.SetActive(true);
