@@ -17,6 +17,13 @@ TagManager:
   - ScoreTag
   - PlatformContainer
   - DeathZone
+  - MaskDude
+  - VirtualGuy
+  - CanBePickedUp
+  - BtnPlayTag
+  - NinjaFrog
+  - PinkMan
+  - HealthBarTag
   layers:
   - Default
   - TransparentFX

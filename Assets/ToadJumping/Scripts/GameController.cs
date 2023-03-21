@@ -48,6 +48,8 @@ public class GameController : MonoBehaviour
     public GameObject ranking;
     public GameObject shopping;
 
+    public GameObject healthBar;
+
 public float lastXPosition;
     public PlatformObjectVM[] listLastPlatform { get; set; } = new PlatformObjectVM[3];
 
@@ -61,9 +63,6 @@ public float lastXPosition;
 
     void Start()
     {
-        gameIsActive = false;
-        //GameObject.FindWithTag("BtnPlayTag").GetComponent<Button>().onClick.AddListener(() => GoBtnClick());
-
     }
 
     public List<PlatformObjectVM> GetListPlatform()

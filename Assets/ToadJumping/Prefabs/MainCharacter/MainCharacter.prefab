@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveInput: 0
-  speed: 5
+  speed: 2
   jumpSpeed: 14
   groundCheck: {fileID: 5761597978604828356}
   groundCheckRadius: 0.3
@@ -213,6 +213,8 @@ MonoBehaviour:
   jumpforce: 5
   jumpHigh: 5
   animateState: 0
+  healthBar: {fileID: 0}
+  HpWhenStart: 2
 --- !u!1 &9058812957361846776
 GameObject:
   m_ObjectHideFlags: 0

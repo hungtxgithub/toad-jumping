@@ -25,7 +25,7 @@ public class TestItemController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.H))
         {
-            var character = CharacterController.Instance;
+            var character = new CharacterController();
 			print($"Debug - HP: {character.hp}");
         }
     }

@@ -7,18 +7,18 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
-    private static CharacterController instance;
-    public static CharacterController Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = new GameObject().AddComponent<CharacterController>();
-            }
-            return instance;
-        }
-    }
+    //private static CharacterController instance;
+    //public static CharacterController Instance
+    //{
+    //    get
+    //    {
+    //        if (instance == null)
+    //        {
+    //            instance = new GameObject().AddComponent<CharacterController>();
+    //        }
+    //        return instance;
+    //    }
+    //}
 
     const int GravityScaleStandard = 5;
     Timer flyItemTimer;
@@ -43,11 +43,14 @@ public class CharacterController : MonoBehaviour
     public float jumpHigh = 5f;
     public int animateState = 0;
 
+    // Health Bar
+    public GameObject healthBar;
+    public int HpWhenStart = 2;
     DateTime time;
 
     private void Awake()
     {
-        instance = this;
+        //instance = this;
     }
 
     // Start is called before the first frame update
@@ -55,8 +58,12 @@ public class CharacterController : MonoBehaviour
     {
         rbd2d = GetComponent<Rigidbody2D>();
         flyItemTimer = gameObject.AddComponent<Timer>();
-        armor.active = false;
+        armor.SetActive(false);
         flyItemTimer.Duration = 3;
+
+        healthBar = GameObject.FindWithTag("HealthBarTag");
+        this.hp = HpWhenStart;
+        ChangeHealthBar(this.hp);
     }
 
     // Update is called once per frame
@@ -120,6 +127,8 @@ public class CharacterController : MonoBehaviour
     private void OnBecameInvisible()
     {
         GameController.Instance.GameOverUI();
+        this.hp = 3;
+        ChangeHealthBar(0);
         Destroy(gameObject);
     }
 
@@ -131,6 +140,7 @@ public class CharacterController : MonoBehaviour
         {
             this.hp = newHp;
         }
+        ChangeHealthBar(this.hp);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -145,14 +155,17 @@ public class CharacterController : MonoBehaviour
         {
             if (!hasArmor)
             {
-                hp--;
+                AddMoreHp(-1);
             }
 
             // Destory enemy after collide
             Destroy(collision.gameObject);
             if (hp <= 0)
             {
+                // Gameover
                 GameController.Instance.GameOverUI();
+                this.hp = 3;
+                ChangeHealthBar(this.hp);
                 Destroy(gameObject);
             }
 
@@ -215,5 +228,15 @@ public class CharacterController : MonoBehaviour
     {
         rbd2d.gravityScale = 0;
         flyItemTimer.Run();
+    }
+
+    void ChangeHealthBar(int hp)
+    {
+        healthBar.transform.localScale = new Vector3(5, 5);
+        if (healthBar != null)
+        {
+            var bar = healthBar.GetComponent<HealthBarController>();
+            bar.SetHealth(hp);
+        }
     }
 }
