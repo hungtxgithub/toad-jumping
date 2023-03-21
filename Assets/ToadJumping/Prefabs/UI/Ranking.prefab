@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 2667524999512278484}
   - component: {fileID: 2667524999512278485}
   m_Layer: 5
-  m_Name: ValueScore
+  m_Name: ValueBestScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -725,7 +725,7 @@ GameObject:
   - component: {fileID: 2667525000445250218}
   - component: {fileID: 2667525000445250219}
   m_Layer: 5
-  m_Name: ValueScore
+  m_Name: ValueTotalScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1135,7 +1135,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &2667525000935941659
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -53,10 +53,10 @@ public class RankController : MonoBehaviour
         {
             intBestScore = score;
             getBestScore();
-            SaveFile.Instance.setBestScore(score);
+            //SaveFile.Instance.setBestScore(score);
         }
        
-        totalScore.text = score != 0 ? score.ToString() : "000000";
+        totalScore.text = score.ToString();
     }
 
 
