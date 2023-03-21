@@ -758,7 +758,7 @@ GameObject:
   m_IsActive: 0
 --- !u!95 &694983909
 Animator:
-  serializedVersion: 5
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -775,7 +775,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!212 &694983910
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1346,7 +1346,7 @@ GameObject:
   m_IsActive: 0
 --- !u!95 &1800525638
 Animator:
-  serializedVersion: 5
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1363,7 +1363,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!212 &1800525639
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1621,6 +1621,30 @@ PrefabInstance:
       propertyPath: shopping
       value: 
       objectReference: {fileID: 1512574332}
+    - target: {fileID: 8633649023395646801, guid: ffd237fc9a005ac4d8d5b92bdce2435c, type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8633649023395646801, guid: ffd237fc9a005ac4d8d5b92bdce2435c, type: 3}
+      propertyPath: goBtnWrap
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8633649023395646801, guid: ffd237fc9a005ac4d8d5b92bdce2435c, type: 3}
+      propertyPath: mainCharacter
+      value: 
+      objectReference: {fileID: 5761597978777637047, guid: a477f1bf4c966c14d83fec019b0c23f0, type: 3}
+    - target: {fileID: 8633649023395646801, guid: ffd237fc9a005ac4d8d5b92bdce2435c, type: 3}
+      propertyPath: maskCharacter
+      value: 
+      objectReference: {fileID: 5761597978777637047, guid: 267beac4fc1235146834d5a9adb324d4, type: 3}
+    - target: {fileID: 8633649023395646801, guid: ffd237fc9a005ac4d8d5b92bdce2435c, type: 3}
+      propertyPath: pinkCharacter
+      value: 
+      objectReference: {fileID: 5761597978777637047, guid: 7635676244057e54bb8f4acb9805f402, type: 3}
+    - target: {fileID: 8633649023395646801, guid: ffd237fc9a005ac4d8d5b92bdce2435c, type: 3}
+      propertyPath: virtualCharacter
+      value: 
+      objectReference: {fileID: 5761597978777637047, guid: d0008012f6a43bc46a0983b4bb14fef4, type: 3}
     - target: {fileID: 8633649023395646806, guid: ffd237fc9a005ac4d8d5b92bdce2435c, type: 3}
       propertyPath: m_RootOrder
       value: 3
