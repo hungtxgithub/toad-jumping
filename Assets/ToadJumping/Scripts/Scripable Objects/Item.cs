@@ -14,7 +14,8 @@ public class Item : ScriptableObject
 	{
 		COIN,
 		HEALTH,
-		ARMOR
+		ARMOR,
+		FLY
 	}
 
 	public ItemType itemType;
