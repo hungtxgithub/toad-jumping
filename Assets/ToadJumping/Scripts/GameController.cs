@@ -107,16 +107,16 @@ public float lastXPosition;
               Debug.Log("currentSkin: " + currentSkin);
         switch (currentSkin)   {
             case "NinjaFrog":
-                Common.Instance.SpawnObject(mainCharacter, new Vector2(0, 0.5f));
+                Common.Instance.SpawnObject(mainCharacter, new Vector2(0, 0));
                 break;
             case "MaskDude":
-                Common.Instance.SpawnObject(maskCharacter, new Vector2(0, 0.5f));
+                Common.Instance.SpawnObject(maskCharacter, new Vector2(0, 0));
                 break;
             case "PinkMan":
-                 Common.Instance.SpawnObject(pinkCharacter, new Vector2(0, 0.5f));
+                 Common.Instance.SpawnObject(pinkCharacter, new Vector2(0, 0));
                 break;
             case "VirtualGuy":
-                 Common.Instance.SpawnObject(virtualCharacter, new Vector2(0, 0.5f));
+                 Common.Instance.SpawnObject(virtualCharacter, new Vector2(0, 0));
                 break;
         }
       

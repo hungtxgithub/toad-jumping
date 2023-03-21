@@ -26,7 +26,7 @@ public class TestItemController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.H))
         {
             var character = CharacterController.Instance;
-			print($"Debug - HP: {character.hp}");
+			//print($"Debug - HP: {character.hp}");
         }
     }
 
@@ -34,7 +34,7 @@ public class TestItemController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
-            print($"Debug - Coin: {InventoryController.CoinAmount}");
+            //print($"Debug - Coin: {InventoryController.CoinAmount}");
         }
     }
 }

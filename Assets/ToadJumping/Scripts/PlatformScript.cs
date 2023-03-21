@@ -9,7 +9,7 @@ using UnityEditor;
 
 public class PlatformScript : MonoBehaviour
 {
-
+    System.DateTime time;
     private static PlatformScript instance;
     public static PlatformScript Instance
     {
@@ -20,6 +20,16 @@ public class PlatformScript : MonoBehaviour
                 instance = new GameObject().AddComponent<PlatformScript>();
             }
             return instance;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        var timeNow = System.DateTime.Now;
+        if((timeNow - time).Duration().TotalSeconds >= 1)
+        {
+            CharacterController.Instance.MoveHandel(collision.gameObject, gameObject);
+            time = System.DateTime.Now;
         }
     }
 

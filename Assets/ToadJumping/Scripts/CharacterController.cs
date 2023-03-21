@@ -84,21 +84,15 @@ public class CharacterController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        MoveCharactor();
+    }
+
+    public void MoveCharactor()
+    {
         Animator mainAnimator = GetComponent<Animator>();
 
         groundIsTouching = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
-        //if (!groundIsTouching)
-        //{
-        //    if (rbd2d.transform.position.x <= -2 || rbd2d.transform.position.x >= 2)
-        //    {
-        //        rbd2d.velocity = new Vector2(0f, rbd2d.velocity.y);
-        //    }
-        //    if (rbd2d.transform.position.x >= -0.1f && rbd2d.transform.position.x <= 0.1f)
-        //    {
-        //        rbd2d.velocity = new Vector2(0f, rbd2d.velocity.y);
-        //    }
-        //}
         if (groundIsTouching && checkStartJumb == true)
         {
             mainAnimator.SetTrigger("stayTr");
@@ -131,11 +125,52 @@ public class CharacterController : MonoBehaviour
 
                 mainAnimator.SetTrigger("jumpTr");
                 jumpSound.Play();
-                rbd2d.velocity = new Vector2(0, 12f);
+                rbd2d.velocity = new Vector2(0, 14f);
                 time = DateTime.Now;
             }
         }
     }
+
+    public void MoveHandel(GameObject character, GameObject platform)
+    {
+        Animator mainAnimator = GetComponent<Animator>();
+
+        groundIsTouching = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+        if (groundIsTouching && checkStartJumb == true)
+        {
+            mainAnimator.SetTrigger("stayTr");
+            checkStartJumb = false;
+        }
+
+        if (groundIsTouching)
+        {
+            if (platform.name == "MainPlatform2(Clone)")
+            {
+                if (Instance.hp >= 2)
+                {
+                    Instance.hp -= 1;
+                }
+                else
+                {
+                    GameOver();
+                }
+            }
+            else if (platform.name == "MainPlatform3(Clone)")
+            {
+                if (Instance.hp >= 3)
+                {
+                    Instance.hp -= 2;
+                }
+                else
+                {
+                    GameOver();
+                }
+            }
+
+        }
+    }
+
 
     void Jump()
     {
@@ -148,6 +183,11 @@ public class CharacterController : MonoBehaviour
     /// </summary>
     private void OnBecameInvisible()
     {
+        GameOver();
+    }
+
+    public void GameOver()
+    {
         mainSound.Stop();
         deathSound.Play();
 
@@ -156,7 +196,6 @@ public class CharacterController : MonoBehaviour
         Destroy(gameObject);
     }
 
-
     public void AddMoreHp(int hp)
     {
         int newHp = this.hp + hp;
@@ -164,7 +203,7 @@ public class CharacterController : MonoBehaviour
         {
             this.hp = newHp;
         }
-        
+
         if (healthBar != null)
         {
             healthBar.SetHealthBar(this.hp);
