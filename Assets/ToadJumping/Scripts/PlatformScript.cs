@@ -4,6 +4,8 @@ using UnityEngine;
 using Assets.ToadJumping.Scripts;
 using System.Linq;
 using Assets.ToadJumping.ViewModel;
+using Unity.VisualScripting;
+using UnityEditor;
 
 public class PlatformScript : MonoBehaviour
 {
@@ -34,23 +36,32 @@ public class PlatformScript : MonoBehaviour
         for (int i = 0; i < Constant.RowOfPlatform; i++)
         {
             var listPlatformInRow = new PlatformObjectVM[3];
-            int numberPlatformInRow = Random.Range(1, 4);
 
-            if (i == 0)
+            //Random đệm ở vị trí nhân vật được spawn khi bắt đầu game
+            if (i == 2)
             {
-                listPlatformInRow[0] = listPlatform.Where(x => x.IsNormal == true).SingleOrDefault();
-                for (int k = 1; k < numberPlatformInRow; k++)
-                    listPlatformInRow[k] = listPlatform[Random.Range(0, listPlatform.Count)];
+                listPlatformInRow[1] = listPlatform.Where(x => x.IsNormal == true).FirstOrDefault();
             }
             else
             {
-                var listLastPlatform = GameController.Instance.listLastPlatform;
-                if (listLastPlatform[0] != null && listLastPlatform[0].IsNormal == true)
-                    listPlatformInRow = RandomPlatformPos0(listPlatform, numberPlatformInRow);
-                else if (listLastPlatform[1] != null && listLastPlatform[1].IsNormal == true)
-                    listPlatformInRow = RandomPlatformPos1(listPlatform, numberPlatformInRow);
-                else if (listLastPlatform[2] != null && listLastPlatform[2].IsNormal == true)
-                    listPlatformInRow = RandomPlatformPos2(listPlatform, numberPlatformInRow);
+                int numberPlatformInRow = Random.Range(1, 4);
+
+                if (i == 0)
+                {
+                    listPlatformInRow[0] = listPlatform.Where(x => x.IsNormal == true).SingleOrDefault();
+                    for (int k = 1; k < numberPlatformInRow; k++)
+                        listPlatformInRow[k] = listPlatform[Random.Range(0, listPlatform.Count)];
+                }
+                else
+                {
+                    var listLastPlatform = GameController.Instance.listLastPlatform;
+                    if (listLastPlatform[0] != null && listLastPlatform[0].IsNormal == true)
+                        listPlatformInRow = RandomPlatformPos0(listPlatform, numberPlatformInRow);
+                    else if (listLastPlatform[1] != null && listLastPlatform[1].IsNormal == true)
+                        listPlatformInRow = RandomPlatformPos1(listPlatform, numberPlatformInRow);
+                    else if (listLastPlatform[2] != null && listLastPlatform[2].IsNormal == true)
+                        listPlatformInRow = RandomPlatformPos2(listPlatform, numberPlatformInRow);
+                }
             }
 
             GameController.Instance.listLastPlatform = listPlatformInRow;

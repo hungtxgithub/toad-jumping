@@ -20,6 +20,8 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    const int GravityScaleStandard = 5;
+    Timer flyItemTimer;
 
     private Rigidbody2D rbd2d;
     public float moveInput;
@@ -52,12 +54,18 @@ public class CharacterController : MonoBehaviour
     void Start()
     {
         rbd2d = GetComponent<Rigidbody2D>();
+        flyItemTimer = gameObject.AddComponent<Timer>();
+        armor.active = false;
+        flyItemTimer.Duration = 3;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (flyItemTimer.Finished)
+        {
+            rbd2d.gravityScale = GravityScaleStandard;
+        }
 
     }
 
@@ -149,6 +157,7 @@ public class CharacterController : MonoBehaviour
             }
 
             // Remove armor after collide
+            armor.active = false;
             hasArmor = false;
         }
     }
@@ -173,6 +182,9 @@ public class CharacterController : MonoBehaviour
                     case Item.ItemType.ARMOR:
                         ApplyArmorItemEffect();
                         break;
+                    case Item.ItemType.FLY:
+                        ApplyFlyItemEffect();
+                        break;
                     default:
                         break;
                 }
@@ -196,5 +208,12 @@ public class CharacterController : MonoBehaviour
     void ApplyArmorItemEffect()
     {
         hasArmor = true;
+        armor.active = true;
+    }
+
+    void ApplyFlyItemEffect()
+    {
+        rbd2d.gravityScale = 0;
+        flyItemTimer.Run();
     }
 }
