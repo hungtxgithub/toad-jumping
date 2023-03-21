@@ -596,7 +596,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  hp: 3
+  hp: 2
   armor: {fileID: 9058812957361846776}
   healthBar: {fileID: 0}
   jumpforce: 5

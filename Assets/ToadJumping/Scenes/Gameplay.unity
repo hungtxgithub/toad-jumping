@@ -1986,6 +1986,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8633649023395646801, guid: ffd237fc9a005ac4d8d5b92bdce2435c, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 68171470}
+    - target: {fileID: 8633649023395646801, guid: ffd237fc9a005ac4d8d5b92bdce2435c, type: 3}
       propertyPath: mainCharacter
       value: 
       objectReference: {fileID: 5761597978777637047, guid: a477f1bf4c966c14d83fec019b0c23f0, type: 3}
