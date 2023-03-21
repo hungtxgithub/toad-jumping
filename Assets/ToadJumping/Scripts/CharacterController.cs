@@ -39,6 +39,9 @@ public class CharacterController : MonoBehaviour
     private bool hasArmor = false;
     [SerializeField] GameObject armor;
 
+    // Health bar
+    [SerializeField] HealthBarController healthBar;
+
     public float jumpforce = 0f;
     public float jumpHigh = 5f;
     public int animateState = 0;
@@ -60,9 +63,13 @@ public class CharacterController : MonoBehaviour
         mainSound.Play();
         rbd2d = GetComponent<Rigidbody2D>();
         flyItemTimer = gameObject.AddComponent<Timer>();
-        armor.active = false;
+        armor.SetActive(false);
         flyItemTimer.Duration = 3;
 
+        healthBar = GameObject.FindWithTag("HealthbarTag").GetComponent<HealthBarController>();
+        // Set healthbar at start
+        ShowHealthBar();
+        healthBar.SetHealthBar(this.hp);
     }
 
     // Update is called once per frame
@@ -145,7 +152,7 @@ public class CharacterController : MonoBehaviour
         deathSound.Play();
 
         GameController.Instance.GameOverUI();
-
+        AddMoreHp(-1 * this.hp);
         Destroy(gameObject);
     }
 
@@ -156,6 +163,11 @@ public class CharacterController : MonoBehaviour
         if (newHp <= MaxHp)
         {
             this.hp = newHp;
+        }
+        
+        if (healthBar != null)
+        {
+            healthBar.SetHealthBar(this.hp);
         }
     }
 
@@ -171,7 +183,7 @@ public class CharacterController : MonoBehaviour
         {
             if (!hasArmor)
             {
-                hp--;
+                AddMoreHp(-1);
             }
 
             // Destory enemy after collide
@@ -185,7 +197,7 @@ public class CharacterController : MonoBehaviour
             }
 
             // Remove armor after collide
-            armor.active = false;
+            armor.SetActive(false);
             hasArmor = false;
         }
     }
@@ -237,12 +249,28 @@ public class CharacterController : MonoBehaviour
     void ApplyArmorItemEffect()
     {
         hasArmor = true;
-        armor.active = true;
+        armor.SetActive(true);
     }
 
     void ApplyFlyItemEffect()
     {
-        rbd2d.gravityScale = 0;
+        //rbd2d.gravityScale = 0;
         flyItemTimer.Run();
+    }
+
+    void HideHealthBar()
+    {
+        if (healthBar != null)
+        {
+            healthBar.transform.localScale = new Vector3(0, 0);
+        }
+    }
+
+    void ShowHealthBar()
+    {
+        if (healthBar != null)
+        {
+            healthBar.transform.localScale = new Vector3(5, 5);
+        }
     }
 }
