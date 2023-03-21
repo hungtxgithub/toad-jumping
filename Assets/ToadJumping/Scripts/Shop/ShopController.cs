@@ -51,6 +51,11 @@ public class ShopController : MonoBehaviour
         }
     }
 
+    public string getCurrentPlayer()
+    {
+        return playerNameActive;
+    }
+
     private void Awake()
     {
         instance = this;
@@ -219,13 +224,13 @@ public class ShopController : MonoBehaviour
                 setTextUserGold();
                 checkDisplayBtn();
                 break;
-            
+
             case "USE":
                 playerNameActive = selectedGameObject.tag;
                 checkDisplayBtn();
                 break;
-            
-            default: 
+
+            default:
                 break;
         }
     }

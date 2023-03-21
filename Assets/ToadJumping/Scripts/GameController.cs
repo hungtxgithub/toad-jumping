@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
@@ -29,6 +30,7 @@ public class GameController : MonoBehaviour
     //public GameObject goBtnWrap;
     //public GameObject platform;
     public GameObject menu;
+    public GameObject BG;
 
 
     public GameObject batEnemy;
@@ -63,6 +65,7 @@ public float lastXPosition;
     {
         gameIsActive = false;
         //GameObject.FindWithTag("BtnPlayTag").GetComponent<Button>().onClick.AddListener(() => GoBtnClick());
+        menu.GetComponent<Animator>().SetBool("checkActive", false);
 
     }
 
@@ -105,6 +108,7 @@ public float lastXPosition;
         //platform.SetActive(false);
         //goBtnWrap.SetActive(false);
         menu.SetActive(false);
+        BG.SetActive(true);
         ranking.SetActive(false);
         Common.Instance.SpawnObject(top, new Vector2(0f, 0f));
     }
@@ -138,7 +142,19 @@ public float lastXPosition;
         ranking.SetActive(!ranking.activeInHierarchy);
         if (gameIsActive && !ranking.activeInHierarchy)
         {
+            //GameObject[] gameObjectsScreen = FindObjectsOfType<GameObject>();
+
+            //for (var i = 0; i < gameObjectsScreen.Length; i++)
+            //{
+            //    if (gameObjectsScreen[i].name.EndsWith("(Clone)") || gameObjectsScreen[i].name == "New Game Object")
+            //    {
+            //        Destroy(gameObjectsScreen[i]);
+            //    }
+            //}
+
+            BG.SetActive(false);
             menu.SetActive(true);
+            //menu.GetComponent<Animator>().SetBool("checkActive", true);
         }
     }
 
