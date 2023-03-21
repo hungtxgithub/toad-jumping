@@ -52,7 +52,7 @@ public class CharacterController : MonoBehaviour
     public float jumpHigh = 5f;
     public int animateState = 0;
     public AudioSource jumpSound;
-    public AudioSource deathSound;
+ 
     public AudioSource collectSound;
     public AudioSource mainSound;
     private bool checkStartJumb = false;
@@ -158,7 +158,8 @@ public class CharacterController : MonoBehaviour
     private void OnBecameInvisible()
     {
         mainSound.Stop();
-        deathSound.Play();
+                      GameController.Instance.deathSound.Play();
+
 
         GameController.Instance.GameOverUI();
         AddMoreHp(-1 * this.hp);
@@ -200,7 +201,7 @@ public class CharacterController : MonoBehaviour
             if (hp <= 0)
             {
                 mainSound.Stop();
-                deathSound.Play();
+               GameController.Instance.deathSound.Play();
                 GameController.Instance.GameOverUI();
                 Destroy(gameObject);
             }
