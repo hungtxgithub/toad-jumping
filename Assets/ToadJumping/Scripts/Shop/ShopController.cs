@@ -63,8 +63,7 @@ public class ShopController : MonoBehaviour
         //data test
         cardPlayer.Add("MaskDude");
         cardPlayer.Add("NinjaFrog");
-        cardItem.Add("ArmorObject Variant");
-        cardItem.Add("CoinObject");
+        //cardItem.Add("Armor");
         totalGold = 2000;
 
     }
@@ -166,6 +165,7 @@ public class ShopController : MonoBehaviour
         }
         else
         {
+            btnMain.GetComponentInChildren<Text>().text = "BUY";
             btnMain.GetComponent<Button>().interactable = true;
             btnMain.SetActive(!cardItem.Contains(selectedGameObject.name));
         }

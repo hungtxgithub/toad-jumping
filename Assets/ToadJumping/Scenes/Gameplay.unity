@@ -1242,6 +1242,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5249615368866628250, guid: 24f9cb4f6c71ef5489040741f33aaef1, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5249615369255436401, guid: 24f9cb4f6c71ef5489040741f33aaef1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1949,6 +1953,14 @@ PrefabInstance:
       propertyPath: btnMain
       value: 
       objectReference: {fileID: 1576810652}
+    - target: {fileID: 1517347981, guid: ffd237fc9a005ac4d8d5b92bdce2435c, type: 3}
+      propertyPath: items.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1517347981, guid: ffd237fc9a005ac4d8d5b92bdce2435c, type: 3}
+      propertyPath: items.Array.data[0]
+      value: 
+      objectReference: {fileID: 4909711697432123897, guid: 15a31452544e03a4ebfddd29f34f538c, type: 3}
     - target: {fileID: 1517347985, guid: ffd237fc9a005ac4d8d5b92bdce2435c, type: 3}
       propertyPath: bestScore
       value: 
