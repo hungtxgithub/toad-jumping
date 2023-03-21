@@ -7,17 +7,39 @@ using Object = UnityEngine.Object;
 
 public class SaveFile : MonoBehaviour
 {
+    private static SaveFile instance;
+    public static SaveFile Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new GameObject().AddComponent<SaveFile>();
+            }
+            return instance;
+        }
+    }
+
+
     string filePath = Application.dataPath + "/savefile.json";
 
     private Dictionary<string, List<GameObject>> dicGameObj = new Dictionary<string, List<GameObject>>();
     private Dictionary<string, List<string>> dicStr = new Dictionary<string, List<string>>();
 
+
     private void Awake()
     {
+        instance = this;
+
         if (!File.Exists(filePath))
         {
             //using (FileStream fs = File.Create(filePath)) { fs.Close(); }
         }
+    }
+
+    public int getBestScore()
+    {
+        return int.Parse(dicStr["BestScore"][0]);
     }
 
     public String getCurrentPlayer()
@@ -50,6 +72,13 @@ public class SaveFile : MonoBehaviour
     public List<GameObject> getPlatform()
     {
         return dicGameObj["Platform"];
+    }
+
+    public void setBestScore(int bestScore)
+    {
+        List<string> list = new List<string>();
+        list.Add(bestScore.ToString());
+        dicStr.Add("BestScore", list);
     }
 
     public void setCurrentPlayer(string currentPlayer)
