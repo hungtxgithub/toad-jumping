@@ -141,6 +141,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1678587054}
     m_Modifications:
+    - target: {fileID: 2667525000197627395, guid: dcbef441cd423304d8940536f11c2cf5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2667525000845070414, guid: dcbef441cd423304d8940536f11c2cf5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -240,6 +244,18 @@ PrefabInstance:
     - target: {fileID: 2667525000935941657, guid: dcbef441cd423304d8940536f11c2cf5, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2667525000935941658, guid: dcbef441cd423304d8940536f11c2cf5, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2667525001113539342, guid: dcbef441cd423304d8940536f11c2cf5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1517347979}
+    - target: {fileID: 2667525001113539342, guid: dcbef441cd423304d8940536f11c2cf5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoBtnClick
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcbef441cd423304d8940536f11c2cf5, type: 3}

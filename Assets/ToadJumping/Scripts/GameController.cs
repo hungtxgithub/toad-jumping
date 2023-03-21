@@ -50,6 +50,7 @@ public class GameController : MonoBehaviour
     public GameObject mainPlatform3;
 
     public GameObject gameoverDialog;
+    public GameObject GamePause;
     public GameObject top;
     public GameObject ranking;
     public GameObject shopping;
@@ -70,10 +71,8 @@ public float lastXPosition;
 
     void Start()
     {
-        
         gameIsActive = false;
         HideHealthBar();
-        //GameObject.FindWithTag("BtnPlayTag").GetComponent<Button>().onClick.AddListener(() => GoBtnClick());
         //bestScore = SaveFile.Instance.getBestScore();
 
     }
@@ -128,13 +127,15 @@ public float lastXPosition;
 
     public void GameOverUI()
     {
-        //Common.Instance.SpawnObject(gameoverDialog, new Vector2(0f, 0f));
-        ranking.SetActive(true);
-        RankController.Instance.getTotalScore(score);
-        GameObject.FindWithTag("BtnPlayTag").GetComponentInChildren<Text>().text = "Replay";
-        GameObject.FindWithTag("BtnPlayTag").GetComponent<Button>().onClick.RemoveListener(GoBtnClick);
-        GameObject.FindWithTag("BtnPlayTag").GetComponent<Button>().onClick.AddListener(() => ReplayBtn());
-        Time.timeScale = 0;
+        if(!GameObject.FindWithTag("PauseGame"))
+        {
+            ranking.SetActive(true); 
+            RankController.Instance.getTotalScore(score);
+            GameObject.FindWithTag("BtnPlayTag").GetComponentInChildren<Text>().text = "Replay";
+            GameObject.FindWithTag("BtnPlayTag").GetComponent<Button>().onClick.RemoveListener(GoBtnClick);
+            GameObject.FindWithTag("BtnPlayTag").GetComponent<Button>().onClick.AddListener(() => ReplayBtn());
+            Time.timeScale = 0;
+        }
     }
 
     public void GoBtnUI()
@@ -166,7 +167,13 @@ public float lastXPosition;
         PlatformScript.Instance.RandomStartPlatform(GetListPlatform());
         Common.Instance.SpawnObject(top, new Vector2(0f, 0f));
 
-        Time.timeScale = 1;
+
+        if (GameObject.FindWithTag("PauseGame"))
+        {
+            Common.Instance.DestroyWithTag("PauseGame");
+        }
+
+            Time.timeScale = 1;
     }
 
     public void DisPlayRank()
@@ -174,8 +181,7 @@ public float lastXPosition;
         ranking.SetActive(!ranking.activeInHierarchy);
         if (gameIsActive && !ranking.activeInHierarchy)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
+            BackHome();
         }
     }
 
@@ -190,5 +196,22 @@ public float lastXPosition;
         {
             ShopController.Instance.closeShop();
         }
+    }
+
+    public void PausGame()
+    {
+        Common.Instance.SpawnObject(GamePause, new Vector2(0, 0.5f));
+        Time.timeScale = 0;
+    }
+
+    public void ContinueGame()
+    {
+        Common.Instance.DestroyWithTag("PauseGame");
+        Time.timeScale = 1;
+    }
+
+    public void BackHome()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

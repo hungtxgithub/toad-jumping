@@ -24,6 +24,7 @@ TagManager:
   - VirtualGuy
   - BtnPlayTag
   - HealthbarTag
+  - PauseGame
   layers:
   - Default
   - TransparentFX
