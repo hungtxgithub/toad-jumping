@@ -70,8 +70,7 @@ public float lastXPosition;
         gameIsActive = false;
         HideHealthBar();
         //GameObject.FindWithTag("BtnPlayTag").GetComponent<Button>().onClick.AddListener(() => GoBtnClick());
-        menu.GetComponent<Animator>().SetBool("checkActive", false);
-        bestScore = SaveFile.Instance.getBestScore();
+        //bestScore = SaveFile.Instance.getBestScore();
 
     }
 
@@ -157,20 +156,6 @@ public float lastXPosition;
         ranking.SetActive(!ranking.activeInHierarchy);
         if (gameIsActive && !ranking.activeInHierarchy)
         {
-            //GameObject[] gameObjectsScreen = FindObjectsOfType<GameObject>();
-
-            //for (var i = 0; i < gameObjectsScreen.Length; i++)
-            //{
-            //    if (gameObjectsScreen[i].name.EndsWith("(Clone)") || gameObjectsScreen[i].name == "New Game Object")
-            //    {
-            //        Destroy(gameObjectsScreen[i]);
-            //    }
-            //}
-
-            //BG.SetActive(false);
-            //menu.SetActive(true);
-            ////menu.GetComponent<Animator>().SetBool("checkActive", true);
-            ///
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
         }
