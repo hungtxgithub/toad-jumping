@@ -17,10 +17,6 @@ public class ShopController : MonoBehaviour
 
     public GameObject btnMain;
 
-    [SerializeField]
-    public Animator nextAnimation;
-    public Animator previousAnimation;
-
     // true: items, false: players
     private bool optionActive;
     //xác ??nh mode hi?n t?i hi?n th? gì

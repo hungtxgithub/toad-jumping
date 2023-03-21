@@ -102,6 +102,8 @@ public float lastXPosition;
         EnemyScript.Instance.RandomEnemy();
         Common.Instance.SpawnObject(mainCharacter, new Vector2(0, 0.5f));
         PlatformScript.Instance.RandomStartPlatform(GetListPlatform());
+
+        Time.timeScale = 1;
     }
 
     public void GameOverUI()
@@ -117,10 +119,6 @@ public float lastXPosition;
 
     public void GoBtnUI()
     {
-        //title.SetActive(false);
-        //character.SetActive(false);
-        //platform.SetActive(false);
-        //goBtnWrap.SetActive(false);
         menu.SetActive(false);
         BG.SetActive(true);
         ranking.SetActive(false);

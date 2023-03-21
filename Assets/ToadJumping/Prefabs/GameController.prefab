@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8633649023395646806}
   - component: {fileID: 8633649023395646801}
+  - component: {fileID: 1517347981}
+  - component: {fileID: 1517347985}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -44,10 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a089a2692cc20e45929ff18bf4abb3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: {fileID: 9162791397391083187, guid: aa72277fb3742c64dbade2696cddb4a9, type: 3}
-  character: {fileID: 5323560271685641325, guid: 4db8073533bf72b47bfad6e39c8b1c8b, type: 3}
-  goBtnWrap: {fileID: 7713330121837460825, guid: 5bf34fcb19d83464a9235304d14352ee, type: 3}
-  platform: {fileID: 2082480872553154953, guid: 592abb9642a716846a3cd0f5074db20e, type: 3}
+  menu: {fileID: 1102243804984597744, guid: 4bf8bc27285a6a3469cf75cab71ddcdd, type: 3}
+  BG: {fileID: 8601883015169311135, guid: ce430da3070c665489eb98508bf52700, type: 3}
   batEnemy: {fileID: 875481308826221371, guid: a1ec6c694e1cc99489c6959ddfd50205, type: 3}
   beeEnemy: {fileID: 1828140460116363123, guid: e1c21077908dbbf42840810bc92d25d8, type: 3}
   ghostEnemy: {fileID: 5298934303160121788, guid: cfa6e7e067650864582783e51581c4a9, type: 3}
@@ -60,3 +60,45 @@ MonoBehaviour:
   mainPlatform3: {fileID: 134282426228059073, guid: be15ffc77eaefbe4e8c4e168cd078fa3, type: 3}
   gameoverDialog: {fileID: 7357159698367727572, guid: 8031a9e57bcbdf34faf978e88533d2e2, type: 3}
   top: {fileID: 5994598904009573919, guid: de2b4ab3b94b1514ea2ab09439adf63d, type: 3}
+  ranking: {fileID: 2667525000935941657, guid: dcbef441cd423304d8940536f11c2cf5, type: 3}
+  shopping: {fileID: 5249615368866628249, guid: 24f9cb4f6c71ef5489040741f33aaef1, type: 3}
+  healthBar: {fileID: 0}
+  lastXPosition: 0
+  score: 0
+  bestScore: 0
+--- !u!114 &1517347981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8633649023395646800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1634f254a9030cb40b4b59e163bb1240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items:
+  - {fileID: 122614554330200942, guid: 3962020fdedfe254b9d472d68a0bc6fa, type: 3}
+  - {fileID: 3876835091315756097, guid: a9c1b5f68b9d3274db6980b1a3d6d985, type: 3}
+  - {fileID: 5567365586276446824, guid: efecbe6b466efb64cb7b1fa8d77cab02, type: 3}
+  players:
+  - {fileID: 7822687510746308311, guid: 1908a18993d964f4087b3915b005d258, type: 3}
+  - {fileID: 4401393316000804256, guid: 1d7dded98bdca3f46abefa8f9e985faf, type: 3}
+  - {fileID: 6114176219402790865, guid: ae44296e05c841e4fa3f21307d5a501e, type: 3}
+  - {fileID: 1770876662201147942, guid: 2951d5da0618d804f8d16e799eb4e52a, type: 3}
+  btnMain: {fileID: 8459760333198209848, guid: c3de3bcbcc3c80a4189328016f3ada15, type: 3}
+--- !u!114 &1517347985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8633649023395646800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 203ed69b2062c474e9775d47d78dfa4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bestScore: {fileID: 3080716281726025028, guid: bbcaec7381035ab46b848eed0aa898e5, type: 3}
+  totalScore: {fileID: 5681730515530482955, guid: 292eb5c311cf70c41bc7a625144914b6, type: 3}
