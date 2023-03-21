@@ -41,13 +41,13 @@ public class CharacterController : MonoBehaviour
 
     public float jumpforce = 0f;
     public float jumpHigh = 5f;
-    public int animateState = 0;    
+    public int animateState = 0;
     public AudioSource jumpSound;
     public AudioSource deathSound;
     public AudioSource collectSound;
     public AudioSource mainSound;
-
-       DateTime time;
+    private bool checkStartJumb = false;
+    DateTime time;
 
     private void Awake()
     {
@@ -92,24 +92,37 @@ public class CharacterController : MonoBehaviour
         //        rbd2d.velocity = new Vector2(0f, rbd2d.velocity.y);
         //    }
         //}
-
+        if (groundIsTouching && checkStartJumb == true)
+        {
+            mainAnimator.SetTrigger("stayTr");
+            checkStartJumb = false;
+        }
 
         if (groundIsTouching)
         {
             if (Input.GetKey(KeyCode.LeftArrow) && (DateTime.Now - time).Duration().TotalSeconds >= 0.35 && gameObject.transform.position.x >= -1)
             {
+                checkStartJumb = true;
                 jumpSound.Play();
+                GetComponent<SpriteRenderer>().flipX = false;
+                mainAnimator.SetTrigger("jumpTr");
                 rbd2d.velocity = new Vector2(-4.5f, 14f);
                 time = DateTime.Now;
             }
             else if (Input.GetKey(KeyCode.RightArrow) && (DateTime.Now - time).Duration().TotalSeconds >= 0.35 && gameObject.transform.position.x <= 1)
             {
+                checkStartJumb = true;
+                GetComponent<SpriteRenderer>().flipX = true;
+                mainAnimator.SetTrigger("jumpTr");
                 jumpSound.Play();
                 rbd2d.velocity = new Vector2(4.5f, 14f);
                 time = DateTime.Now;
             }
             else if (Input.GetKey(KeyCode.UpArrow) && (DateTime.Now - time).Duration().TotalSeconds >= 0.35)
             {
+                checkStartJumb = true;
+
+                mainAnimator.SetTrigger("jumpTr");
                 jumpSound.Play();
                 rbd2d.velocity = new Vector2(0, 12f);
                 time = DateTime.Now;
