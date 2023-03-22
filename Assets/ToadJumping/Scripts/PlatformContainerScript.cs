@@ -18,6 +18,8 @@ public class PlatformContainerScript : MonoBehaviour
             Destroy(gameObject);
             InstancePlatform();
             GameController.Instance.score += 5;
+            GameController.Instance.speedGameCurrent += 0.02f;
+            Time.timeScale = GameController.Instance.speedGameCurrent;
             GameObject.FindGameObjectWithTag("ScoreTag").GetComponent<Text>().text = GameController.Instance.score.ToString();
         }
     }

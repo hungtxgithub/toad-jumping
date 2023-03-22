@@ -26,7 +26,7 @@ public class PlatformScript : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         var timeNow = System.DateTime.Now;
-        if((timeNow - time).Duration().TotalSeconds >= 1)
+        if((timeNow - time).Duration().TotalSeconds >= 0.5)
         {
             CharacterController.Instance.MoveHandel(collision.gameObject, gameObject);
             time = System.DateTime.Now;

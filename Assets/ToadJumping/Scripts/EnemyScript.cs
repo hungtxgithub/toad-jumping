@@ -103,10 +103,5 @@ namespace Assets.ToadJumping.Scripts
             return listVector2[index];
         }
 
-
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-           
-        }
     }
 }

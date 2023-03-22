@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
     private static GameController instance;
-    
+
     private bool gameIsActive;
 
     public static GameController Instance
@@ -42,7 +42,7 @@ public class GameController : MonoBehaviour
     public GameObject maskCharacter;
     public GameObject virtualCharacter;
     public GameObject pinkCharacter;
- public AudioSource deathSound;
+    public AudioSource deathSound;
 
     public GameObject platformContainer;
     public GameObject mainPlatform1;
@@ -54,17 +54,16 @@ public class GameController : MonoBehaviour
     public GameObject top;
     public GameObject ranking;
     public GameObject shopping;
-   
-
 
     public GameObject healthBar;
 
-public float lastXPosition;
+    public float lastXPosition;
     public PlatformObjectVM[] listLastPlatform { get; set; } = new PlatformObjectVM[3];
 
     public int score;
     public int bestScore;
 
+    public float speedGameCurrent = 1;
 
     private void Awake()
     {
@@ -106,8 +105,9 @@ public float lastXPosition;
         //Random enemy function
         EnemyScript.Instance.RandomEnemy();
         string currentSkin = ShopController.Instance.getCurrentPlayer();
-              Debug.Log("currentSkin: " + currentSkin);
-        switch (currentSkin)   {
+        Debug.Log("currentSkin: " + currentSkin);
+        switch (currentSkin)
+        {
             case "NinjaFrog":
                 Common.Instance.SpawnObject(mainCharacter, new Vector2(0, 0));
                 break;
@@ -115,13 +115,13 @@ public float lastXPosition;
                 Common.Instance.SpawnObject(maskCharacter, new Vector2(0, 0));
                 break;
             case "PinkMan":
-                 Common.Instance.SpawnObject(pinkCharacter, new Vector2(0, 0));
+                Common.Instance.SpawnObject(pinkCharacter, new Vector2(0, 0));
                 break;
             case "VirtualGuy":
-                 Common.Instance.SpawnObject(virtualCharacter, new Vector2(0, 0));
+                Common.Instance.SpawnObject(virtualCharacter, new Vector2(0, 0));
                 break;
         }
-      
+
         PlatformScript.Instance.RandomStartPlatform(GetListPlatform());
 
         Time.timeScale = 1;
@@ -129,9 +129,9 @@ public float lastXPosition;
 
     public void GameOverUI()
     {
-        if(!GameObject.FindWithTag("PauseGame"))
+        if (!GameObject.FindWithTag("PauseGame"))
         {
-            ranking.SetActive(true); 
+            ranking.SetActive(true);
             RankController.Instance.getTotalScore(score);
             GameObject.FindWithTag("BtnPlayTag").GetComponentInChildren<Text>().text = "Replay";
             GameObject.FindWithTag("BtnPlayTag").GetComponent<Button>().onClick.RemoveListener(GoBtnClick);
@@ -175,7 +175,7 @@ public float lastXPosition;
             Common.Instance.DestroyWithTag("PauseGame");
         }
 
-            Time.timeScale = 1;
+        Time.timeScale = 1;
     }
 
     public void DisPlayRank()

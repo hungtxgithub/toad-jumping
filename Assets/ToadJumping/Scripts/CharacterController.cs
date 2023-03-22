@@ -52,7 +52,7 @@ public class CharacterController : MonoBehaviour
     public float jumpHigh = 5f;
     public int animateState = 0;
     public AudioSource jumpSound;
- 
+
     public AudioSource collectSound;
     public AudioSource mainSound;
     private bool checkStartJumb = false;
@@ -127,7 +127,7 @@ public class CharacterController : MonoBehaviour
                 rbd2d.velocity = new Vector2(4.5f, 14f);
                 time = DateTime.Now;
             }
-            else if ((Input.GetKey(KeyCode.UpArrow) || isVirtualMiddleBtnClicked()) 
+            else if ((Input.GetKey(KeyCode.UpArrow) || isVirtualMiddleBtnClicked())
                 && (DateTime.Now - time).Duration().TotalSeconds >= 0.35)
             {
                 checkStartJumb = true;
@@ -158,7 +158,7 @@ public class CharacterController : MonoBehaviour
             {
                 if (Instance.hp >= 2)
                 {
-                    Instance.hp -= 1;
+                    AddMoreHp(-1);
                 }
                 else
                 {
@@ -169,7 +169,7 @@ public class CharacterController : MonoBehaviour
             {
                 if (Instance.hp >= 3)
                 {
-                    Instance.hp -= 2;
+                    AddMoreHp(-2);
                 }
                 else
                 {
@@ -198,7 +198,7 @@ public class CharacterController : MonoBehaviour
     public void GameOver()
     {
         mainSound.Stop();
-                      GameController.Instance.deathSound.Play();
+        GameController.Instance.deathSound.Play();
 
 
         GameController.Instance.GameOverUI();
@@ -240,7 +240,7 @@ public class CharacterController : MonoBehaviour
             if (hp <= 0)
             {
                 mainSound.Stop();
-               GameController.Instance.deathSound.Play();
+                GameController.Instance.deathSound.Play();
                 GameController.Instance.GameOverUI();
                 Destroy(gameObject);
             }
