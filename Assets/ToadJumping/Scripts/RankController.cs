@@ -23,7 +23,6 @@ public class RankController : MonoBehaviour
     public Text totalScore;
 
     private int intBestScore;
-    private int intTotalScore;
 
     //private SaveFile saveFile = new SaveFile();
 
@@ -37,9 +36,9 @@ public class RankController : MonoBehaviour
     private void Start()
     {
         //intBestScore = SaveFile.Instance.getBestScore();
-        intBestScore = 100000;
+        intBestScore = SaveFile.Instance.getBestScore();
         getBestScore();
-        getTotalScore(0);
+        getTotalScore(SaveFile.Instance.getlastScore());
     }
 
     public void getBestScore()
@@ -53,10 +52,11 @@ public class RankController : MonoBehaviour
         {
             intBestScore = score;
             getBestScore();
-            //SaveFile.Instance.setBestScore(score);
+            SaveFile.Instance.setBestScore(score);
         }
 
         totalScore.text = score.ToString();
+        SaveFile.Instance.setLastScore(score);
     }
 
 
