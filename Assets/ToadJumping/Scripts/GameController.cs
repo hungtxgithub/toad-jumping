@@ -151,6 +151,7 @@ public class GameController : MonoBehaviour
     public void PauseGame()
     {
         Time.timeScale = 0;
+        speedGameCurrent = 1;
     }
 
     public void ReplayBtn()
