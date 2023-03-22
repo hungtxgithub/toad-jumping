@@ -158,7 +158,15 @@ public class CharacterController : MonoBehaviour
             {
                 if (Instance.hp >= 2)
                 {
-                    AddMoreHp(-1);
+                    if (armor.activeSelf == true)
+                    {
+                        // Remove armor after collide
+                        armor.SetActive(false);
+                        hasArmor = false;
+                    }
+                    else
+                        AddMoreHp(-1);
+
                 }
                 else
                 {
@@ -169,7 +177,14 @@ public class CharacterController : MonoBehaviour
             {
                 if (Instance.hp >= 3)
                 {
-                    AddMoreHp(-2);
+                    if (armor.activeSelf == true)
+                    {
+                        // Remove armor after collide
+                        armor.SetActive(false);
+                        hasArmor = false;
+                    }
+                    else
+                        AddMoreHp(-2);
                 }
                 else
                 {
