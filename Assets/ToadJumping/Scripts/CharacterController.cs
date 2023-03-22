@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Net.Http.Headers;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterController : MonoBehaviour
 {
@@ -40,13 +41,18 @@ public class CharacterController : MonoBehaviour
     [SerializeField] GameObject armor;
 
     // Health bar
-    [SerializeField] HealthBarController healthBar;
+    HealthBarController healthBar;
+
+    // Virtual button
+    [SerializeField] private Button virtualLeftBtn;
+    [SerializeField] private Button virtualMiddleBtn;
+    [SerializeField] private Button virtualRightBtn;
 
     public float jumpforce = 0f;
     public float jumpHigh = 5f;
     public int animateState = 0;
     public AudioSource jumpSound;
-    public AudioSource deathSound;
+ 
     public AudioSource collectSound;
     public AudioSource mainSound;
     private bool checkStartJumb = false;
@@ -101,7 +107,8 @@ public class CharacterController : MonoBehaviour
 
         if (groundIsTouching)
         {
-            if (Input.GetKey(KeyCode.LeftArrow) && (DateTime.Now - time).Duration().TotalSeconds >= 0.35 && gameObject.transform.position.x >= -1)
+            if ((Input.GetKey(KeyCode.LeftArrow) || isVirtualLeftBtnClicked())
+                && (DateTime.Now - time).Duration().TotalSeconds >= 0.35 && gameObject.transform.position.x >= -1)
             {
                 checkStartJumb = true;
                 jumpSound.Play();
@@ -110,7 +117,8 @@ public class CharacterController : MonoBehaviour
                 rbd2d.velocity = new Vector2(-4.5f, 14f);
                 time = DateTime.Now;
             }
-            else if (Input.GetKey(KeyCode.RightArrow) && (DateTime.Now - time).Duration().TotalSeconds >= 0.35 && gameObject.transform.position.x <= 1)
+            else if ((Input.GetKey(KeyCode.RightArrow) || isVirtualRightBtnClicked())
+                && (DateTime.Now - time).Duration().TotalSeconds >= 0.35 && gameObject.transform.position.x <= 1)
             {
                 checkStartJumb = true;
                 GetComponent<SpriteRenderer>().flipX = true;
@@ -119,7 +127,8 @@ public class CharacterController : MonoBehaviour
                 rbd2d.velocity = new Vector2(4.5f, 14f);
                 time = DateTime.Now;
             }
-            else if (Input.GetKey(KeyCode.UpArrow) && (DateTime.Now - time).Duration().TotalSeconds >= 0.35)
+            else if ((Input.GetKey(KeyCode.UpArrow) || isVirtualMiddleBtnClicked()) 
+                && (DateTime.Now - time).Duration().TotalSeconds >= 0.35)
             {
                 checkStartJumb = true;
 
@@ -189,7 +198,8 @@ public class CharacterController : MonoBehaviour
     public void GameOver()
     {
         mainSound.Stop();
-        deathSound.Play();
+                      GameController.Instance.deathSound.Play();
+
 
         GameController.Instance.GameOverUI();
         AddMoreHp(-1 * this.hp);
@@ -230,7 +240,7 @@ public class CharacterController : MonoBehaviour
             if (hp <= 0)
             {
                 mainSound.Stop();
-                deathSound.Play();
+               GameController.Instance.deathSound.Play();
                 GameController.Instance.GameOverUI();
                 Destroy(gameObject);
             }
@@ -311,5 +321,50 @@ public class CharacterController : MonoBehaviour
         {
             healthBar.transform.localScale = new Vector3(5, 5);
         }
+    }
+
+    bool isVirtualLeftBtnClicked()
+    {
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            var touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
+
+            if (touchPosition.x < -1.5f)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    bool isVirtualRightBtnClicked()
+    {
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            var touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
+
+            if (touchPosition.x > 1.5f)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    bool isVirtualMiddleBtnClicked()
+    {
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            var touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
+
+            if (touchPosition.x > -1.5f && touchPosition.x < 1.5f)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

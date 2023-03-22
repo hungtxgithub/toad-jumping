@@ -42,7 +42,7 @@ public class GameController : MonoBehaviour
     public GameObject maskCharacter;
     public GameObject virtualCharacter;
     public GameObject pinkCharacter;
-
+ public AudioSource deathSound;
 
     public GameObject platformContainer;
     public GameObject mainPlatform1;
@@ -54,6 +54,8 @@ public class GameController : MonoBehaviour
     public GameObject top;
     public GameObject ranking;
     public GameObject shopping;
+   
+
 
     public GameObject healthBar;
 
