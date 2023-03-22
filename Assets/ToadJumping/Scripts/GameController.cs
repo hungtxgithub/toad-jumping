@@ -115,10 +115,10 @@ public class GameController : MonoBehaviour
                 Common.Instance.SpawnObject(maskCharacter, new Vector2(0, 0));
                 break;
             case "PinkMan":
-                Common.Instance.SpawnObject(pinkCharacter, new Vector2(0, 0));
+                Common.Instance.SpawnObject(pinkCharacter, new Vector2(0, 0.5f));
                 break;
             case "VirtualGuy":
-                Common.Instance.SpawnObject(virtualCharacter, new Vector2(0, 0));
+                Common.Instance.SpawnObject(virtualCharacter, new Vector2(0, 0.5f));
                 break;
         }
 

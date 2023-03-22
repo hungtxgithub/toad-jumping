@@ -2,7 +2,7 @@ using Assets.ToadJumping.Scripts;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.U2D.Path;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,7 +33,7 @@ public class ShopController : MonoBehaviour
     private List<String> cardItem = new List<string>();
     //vàng ??c t? file ra
     private int totalGold { get; set; }
-    private string playerNameActive = "MaskDude";
+    private string playerNameActive;
 
     public static ShopController Instance
     {
@@ -61,8 +61,8 @@ public class ShopController : MonoBehaviour
         index = 0;
 
         //data test
-        cardPlayer.Add("MaskDude");
-        cardPlayer.Add("NinjaFrog");
+        //cardPlayer.Add("MaskDude");
+        //cardPlayer.Add("NinjaFrog");
         //cardItem.Add("Armor");
         totalGold = 2000;
 
@@ -70,11 +70,19 @@ public class ShopController : MonoBehaviour
 
     private void Start()
     {
-
+        cardPlayer = SaveFile.Instance.getPlayer();
+        cardItem = SaveFile.Instance.getItem();
+        totalGold = SaveFile.Instance.getGoldUser();
+        playerNameActive = SaveFile.Instance.getCurrentPlayer();
     }
 
     public void openShop()
     {
+        if(!optionActive)
+        {
+            GameObject selected = players.Where(x => x.tag == playerNameActive).FirstOrDefault();
+            index = players.IndexOf(selected);
+        }
         selectedGameObject = selectedItems[index];
         ShopController.Instance.SpawnObject(selectedGameObject, new Vector2(0, 0f));
         setTextUserGold();
@@ -219,11 +227,18 @@ public class ShopController : MonoBehaviour
                 cardPlayer.Add(selectedGameObject.tag);
                 setTextUserGold();
                 checkDisplayBtn();
+                //savefile
+                SaveFile.Instance.setGold(totalGold);
+                SaveFile.Instance.setPlayer(cardPlayer);
+                //SaveFile.Instance.saveFileClick();
                 break;
 
             case "USE":
                 playerNameActive = selectedGameObject.tag;
                 checkDisplayBtn();
+                //savefile
+                SaveFile.Instance.setCurrentPlayer(playerNameActive);
+                //SaveFile.Instance.saveFileClick();
                 break;
 
             default:
