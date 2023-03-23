@@ -184,7 +184,7 @@ public class GameController : MonoBehaviour
         {
             Common.Instance.DestroyWithTag("PauseGame");
         }
-
+        speedGameCurrent = 1;
         Time.timeScale = 1;
     }
 
