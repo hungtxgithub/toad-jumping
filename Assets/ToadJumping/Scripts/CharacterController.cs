@@ -319,7 +319,7 @@ public class CharacterController : MonoBehaviour
         AddMoreHp(1);
     }
 
-    void ApplyArmorItemEffect()
+    public void ApplyArmorItemEffect()
     {
         hasArmor = true;
         armor.SetActive(true);

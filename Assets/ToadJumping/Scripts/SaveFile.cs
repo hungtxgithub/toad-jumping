@@ -8,8 +8,6 @@ using System.Xml;
 using Unity.VisualScripting;
 using UnityEngine;
 using Newtonsoft.Json;
-using static UnityEditor.Progress;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class SaveFile : MonoBehaviour
 {
