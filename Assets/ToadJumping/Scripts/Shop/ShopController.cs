@@ -173,9 +173,16 @@ public class ShopController : MonoBehaviour
         }
         else
         {
-            btnMain.GetComponentInChildren<Text>().text = "BUY";
-            btnMain.GetComponent<Button>().interactable = true;
-            btnMain.SetActive(!cardItem.Contains(selectedGameObject.name));
+            if (currentObjCost.Length != 0 && currentObjCost[0].Cost <= totalGold && !cardItem.Contains(selectedGameObject.tag))
+            {
+                btnMain.GetComponentInChildren<Text>().text = "BUY";
+                btnMain.GetComponent<Button>().interactable = true;
+                btnMain.SetActive(true);
+            }
+            else
+            {
+                btnMain.SetActive(false);
+            }
         }
     }
     /**
@@ -224,13 +231,19 @@ public class ShopController : MonoBehaviour
         {
             case "BUY":
                 updateUserGold(currentCost, false);
-                cardPlayer.Add(selectedGameObject.tag);
+                //savefile
+                if(!optionActive)
+                {
+                    cardPlayer.Add(selectedGameObject.tag);
+                    SaveFile.Instance.setPlayer(cardPlayer);
+                } else
+                {
+                    cardItem.Add(selectedGameObject.tag);
+                    SaveFile.Instance.setItem(cardItem);
+                }
                 setTextUserGold();
                 checkDisplayBtn();
-                //savefile
                 SaveFile.Instance.setGold(totalGold);
-                SaveFile.Instance.setPlayer(cardPlayer);
-                //SaveFile.Instance.saveFileClick();
                 break;
 
             case "USE":

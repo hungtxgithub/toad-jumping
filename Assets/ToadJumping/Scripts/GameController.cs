@@ -54,6 +54,7 @@ public class GameController : MonoBehaviour
     public GameObject top;
     public GameObject ranking;
     public GameObject shopping;
+    public GameObject ItemPlay;
 
     public GameObject healthBar;
 
@@ -105,6 +106,7 @@ public class GameController : MonoBehaviour
         //Random enemy function
         EnemyScript.Instance.RandomEnemy();
         string currentSkin = ShopController.Instance.getCurrentPlayer();
+        string itemCard = SaveFile.Instance.getItem().Count > 0 ? SaveFile.Instance.getItem()[0] : "";
         Debug.Log("currentSkin: " + currentSkin);
         switch (currentSkin)
         {
@@ -121,6 +123,11 @@ public class GameController : MonoBehaviour
                 Common.Instance.SpawnObject(virtualCharacter, new Vector2(0, 0.5f));
                 break;
         }
+
+        if(itemCard != "")
+        {
+            Common.Instance.SpawnObject(ItemPlay, new Vector2(0, 2f));
+        } 
 
         PlatformScript.Instance.RandomStartPlatform(GetListPlatform());
 
@@ -216,5 +223,12 @@ public class GameController : MonoBehaviour
     public void BackHome()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void ActiveItemPlay()
+    {
+        Common.Instance.DestroyWithTag("ArmorClick");
+        SaveFile.Instance.setItem(new List<string>());
+        CharacterController.Instance.ApplyArmorItemEffect();
     }
 }
