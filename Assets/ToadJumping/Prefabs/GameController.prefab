@@ -67,7 +67,7 @@ MonoBehaviour:
   top: {fileID: 5994598904009573919, guid: de2b4ab3b94b1514ea2ab09439adf63d, type: 3}
   ranking: {fileID: 2667525000935941657, guid: dcbef441cd423304d8940536f11c2cf5, type: 3}
   shopping: {fileID: 5249615368866628249, guid: 24f9cb4f6c71ef5489040741f33aaef1, type: 3}
-  ItemPlay: {fileID: 0}
+  ItemPlay: {fileID: 4994481562760343154, guid: c48b41c2b5289cf40927e89c2676b81f, type: 3}
   healthBar: {fileID: 1898747287072741245, guid: 0714e3923d28ee743b0b7503a0efafd3, type: 3}
   lastXPosition: 0
   score: 0
