@@ -8,8 +8,8 @@ public class ItemSpawner : MonoBehaviour
     [SerializeField] GameObject heartPrefab;
 	[SerializeField] GameObject armorPrefab;
     [SerializeField] bool hasItem;
-    const float HeartRate = 0.1f;
-    const float ArmorRate = 0.2f;
+    const float HeartRate = 0.02f;
+    const float ArmorRate = 0.04f;
     const float CoinRate = 0.4f;
 	// Start is called before the first frame update
 	void Start()
