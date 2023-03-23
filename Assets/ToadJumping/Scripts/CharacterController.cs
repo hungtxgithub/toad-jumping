@@ -115,7 +115,7 @@ public class CharacterController : MonoBehaviour
                 jumpSound.Play();
                 GetComponent<SpriteRenderer>().flipX = false;
                 mainAnimator.SetTrigger("jumpTr");
-                rbd2d.velocity = new Vector2(-4.5f, 14f);
+                rbd2d.velocity = new Vector2(-3.5f, 14f);
                 time = DateTime.Now;
             }
             else if ((Input.GetKey(KeyCode.RightArrow) || isVirtualRightBtnClicked())
@@ -125,7 +125,7 @@ public class CharacterController : MonoBehaviour
                 GetComponent<SpriteRenderer>().flipX = true;
                 mainAnimator.SetTrigger("jumpTr");
                 jumpSound.Play();
-                rbd2d.velocity = new Vector2(4.5f, 14f);
+                rbd2d.velocity = new Vector2(3.5f, 14f);
                 time = DateTime.Now;
             }
             else if ((Input.GetKey(KeyCode.UpArrow) || isVirtualMiddleBtnClicked())

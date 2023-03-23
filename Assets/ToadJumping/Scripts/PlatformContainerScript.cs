@@ -41,7 +41,7 @@ public class PlatformContainerScript : MonoBehaviour
 
         var parent = Common.Instance.SpawnObjectHasReturn(GameController.Instance.platformContainer, new Vector2(0, 5.5f));
 
-        float posX = -2;
+        float posX = -1.6f;
         for (int j = 0; j < 3; j++)
         {
             if (listPlatformInRow[j] != null)
@@ -49,7 +49,7 @@ public class PlatformContainerScript : MonoBehaviour
                 var child = Common.Instance.SpawnObjectHasReturn(listPlatformInRow[j].GameObject, new Vector2(posX, 5.5f));
                 child.transform.SetParent(parent.transform);
             }
-            posX += 2;
+            posX += 1.6f;
         }
     }
 }
