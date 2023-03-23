@@ -53,10 +53,11 @@ MonoBehaviour:
   ghostEnemy: {fileID: 5298934303160121788, guid: cfa6e7e067650864582783e51581c4a9, type: 3}
   skullEnemy: {fileID: 5710394214854542636, guid: 0ccb228a3c7f6b742b0e15b700313d35, type: 3}
   warning: {fileID: 5739483762430212539, guid: ae18f2bf199019a46a3c83fb1b748e3f, type: 3}
-  mainCharacter: {fileID: 5761597978777637047, guid: 7635676244057e54bb8f4acb9805f402, type: 3}
-  maskCharacter: {fileID: 0}
-  virtualCharacter: {fileID: 0}
-  pinkCharacter: {fileID: 0}
+  mainCharacter: {fileID: 5761597978777637047, guid: a477f1bf4c966c14d83fec019b0c23f0, type: 3}
+  maskCharacter: {fileID: 5761597978777637047, guid: 267beac4fc1235146834d5a9adb324d4, type: 3}
+  virtualCharacter: {fileID: 5761597978777637047, guid: d0008012f6a43bc46a0983b4bb14fef4, type: 3}
+  pinkCharacter: {fileID: 5761597978777637047, guid: 7635676244057e54bb8f4acb9805f402, type: 3}
+  deathSound: {fileID: 5925415968822772790, guid: 3ca1491f23a1b194fb5a07e1648e8e2b, type: 3}
   platformContainer: {fileID: 3264967934346859044, guid: ef1d87bf7424d4c45bdb6b090c9b58c1, type: 3}
   mainPlatform1: {fileID: 239334754317457088, guid: 79e0749457fda7848bff0295e6339708, type: 3}
   mainPlatform2: {fileID: 134282426228059073, guid: 0057f2734102b3d41b72eeb183eec9b4, type: 3}
@@ -66,10 +67,12 @@ MonoBehaviour:
   top: {fileID: 5994598904009573919, guid: de2b4ab3b94b1514ea2ab09439adf63d, type: 3}
   ranking: {fileID: 2667525000935941657, guid: dcbef441cd423304d8940536f11c2cf5, type: 3}
   shopping: {fileID: 5249615368866628249, guid: 24f9cb4f6c71ef5489040741f33aaef1, type: 3}
-  healthBar: {fileID: 0}
+  ItemPlay: {fileID: 0}
+  healthBar: {fileID: 1898747287072741245, guid: 0714e3923d28ee743b0b7503a0efafd3, type: 3}
   lastXPosition: 0
   score: 0
   bestScore: 0
+  speedGameCurrent: 1
 --- !u!114 &1517347981
 MonoBehaviour:
   m_ObjectHideFlags: 0
