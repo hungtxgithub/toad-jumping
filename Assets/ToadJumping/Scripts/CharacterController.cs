@@ -34,6 +34,7 @@ public class CharacterController : MonoBehaviour
     public LayerMask groundLayer;
     private bool groundIsTouching;
     public int hp = 1;
+    public int countCoin = 0;
     public const int MaxHp = 5;
 
     // Item effect
@@ -214,11 +215,15 @@ public class CharacterController : MonoBehaviour
     {
         mainSound.Stop();
         GameController.Instance.deathSound.Play();
-
-
+        
         GameController.Instance.GameOverUI();
         AddMoreHp(-1 * this.hp);
         Destroy(gameObject);
+        
+        int getCointFile = SaveFile.Instance.getGoldUser();
+        SaveFile.Instance.setGold(getCointFile + countCoin);
+        countCoin = 0;
+        //GameObject.Find("QuantityCoinTxt").GetComponent<Text>().text = countCoin.ToString();
     }
 
     public void AddMoreHp(int hp)
@@ -280,6 +285,9 @@ public class CharacterController : MonoBehaviour
                 {
                     case Item.ItemType.COIN:
                         ApplyCoinItemEffect(hitObject);
+                        countCoin++;
+                        //set Coin when play game
+                        GameObject.Find("QuantityCoinTxt").GetComponent<Text>().text = countCoin.ToString();
                         break;
                     case Item.ItemType.HEALTH:
                         ApplyHealthItemEffect();
@@ -303,6 +311,7 @@ public class CharacterController : MonoBehaviour
     void ApplyCoinItemEffect(Item item)
     {
         item.quantity++;
+        Debug.Log(item.quantity);
     }
 
     void ApplyHealthItemEffect()
