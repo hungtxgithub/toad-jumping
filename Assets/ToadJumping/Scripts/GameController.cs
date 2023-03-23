@@ -222,6 +222,7 @@ public class GameController : MonoBehaviour
 
     public void BackHome()
     {
+        Common.Instance.DestroyWithTag("MainCharacter");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
