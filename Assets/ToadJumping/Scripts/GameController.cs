@@ -48,6 +48,7 @@ public class GameController : MonoBehaviour
     public GameObject mainPlatform1;
     public GameObject mainPlatform2;
     public GameObject mainPlatform3;
+    public GameObject mainPlatform4;
 
     public GameObject gameoverDialog;
     public GameObject GamePause;
@@ -92,7 +93,8 @@ public class GameController : MonoBehaviour
         return new List<PlatformObjectVM>(){
             new PlatformObjectVM(){GameObject = mainPlatform1, IsNormal = true},
             new PlatformObjectVM(){GameObject = mainPlatform2, IsNormal = false},
-            new PlatformObjectVM(){GameObject = mainPlatform3, IsNormal = false}
+            new PlatformObjectVM(){GameObject = mainPlatform3, IsNormal = false},
+            new PlatformObjectVM(){GameObject = mainPlatform4, IsNormal = false}
         };
     }
 

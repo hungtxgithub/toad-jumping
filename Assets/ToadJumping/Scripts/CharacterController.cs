@@ -157,17 +157,15 @@ public class CharacterController : MonoBehaviour
         {
             if (platform.name == "MainPlatform2(Clone)")
             {
-                if (Instance.hp >= 2)
+                if (armor.activeSelf == true)
                 {
-                    if (armor.activeSelf == true)
-                    {
-                        // Remove armor after collide
-                        armor.SetActive(false);
-                        hasArmor = false;
-                    }
-                    else
-                        AddMoreHp(-1);
-
+                    // Remove armor after collide
+                    armor.SetActive(false);
+                    hasArmor = false;
+                }
+                else if (Instance.hp >= 2)
+                {
+                    AddMoreHp(-1);
                 }
                 else
                 {
@@ -176,21 +174,24 @@ public class CharacterController : MonoBehaviour
             }
             else if (platform.name == "MainPlatform3(Clone)")
             {
-                if (Instance.hp >= 3)
+                if (armor.activeSelf == true)
                 {
-                    if (armor.activeSelf == true)
-                    {
-                        // Remove armor after collide
-                        armor.SetActive(false);
-                        hasArmor = false;
-                    }
-                    else
-                        AddMoreHp(-2);
+                    // Remove armor after collide
+                    armor.SetActive(false);
+                    hasArmor = false;
+                }
+                else if (Instance.hp >= 3)
+                {
+                    AddMoreHp(-2);
                 }
                 else
                 {
                     GameOver();
                 }
+            }
+            else if (platform.name == "MainPlatform4(Clone)")
+            {
+                Destroy(platform);
             }
 
         }
@@ -215,11 +216,11 @@ public class CharacterController : MonoBehaviour
     {
         mainSound.Stop();
         GameController.Instance.deathSound.Play();
-        
+
         GameController.Instance.GameOverUI();
         AddMoreHp(-1 * this.hp);
         Destroy(gameObject);
-        
+
         int getCointFile = SaveFile.Instance.getGoldUser();
         SaveFile.Instance.setGold(getCointFile + countCoin);
         countCoin = 0;

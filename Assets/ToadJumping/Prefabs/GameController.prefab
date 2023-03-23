@@ -62,6 +62,7 @@ MonoBehaviour:
   mainPlatform1: {fileID: 239334754317457088, guid: 79e0749457fda7848bff0295e6339708, type: 3}
   mainPlatform2: {fileID: 134282426228059073, guid: 0057f2734102b3d41b72eeb183eec9b4, type: 3}
   mainPlatform3: {fileID: 134282426228059073, guid: be15ffc77eaefbe4e8c4e168cd078fa3, type: 3}
+  mainPlatform4: {fileID: 134282426228059073, guid: 45dffad61bdd1264597d8c5c0a9a6738, type: 3}
   gameoverDialog: {fileID: 7357159698367727572, guid: 8031a9e57bcbdf34faf978e88533d2e2, type: 3}
   GamePause: {fileID: 4423232557168643267, guid: 33ec52257835d7044a7290b7c5abaa36, type: 3}
   top: {fileID: 5994598904009573919, guid: de2b4ab3b94b1514ea2ab09439adf63d, type: 3}
